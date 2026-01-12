@@ -1,0 +1,170 @@
+<!-- Desenvolvido por Geêndersom Araújo -->
+<!-- 12/01/2026 -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IBRMusic - Excelência em educação musical e formação de músicos profissionais">
+  <title>IBRMusic - Excelência em Música</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo">
+        <img src="public/logos/LOGO-IBR.png" alt="IBRMusic Logo">
+      </a>
+      
+      <nav class="header__nav">
+        <a href="index.html" class="header__nav-link">Home</a>
+        <a href="pages/quem-somos.html" class="header__nav-link">Quem Somos</a>
+        <a href="pages/missao-visao-valores.html" class="header__nav-link">Missão, Visão e Valores</a>
+        <a href="pages/inscricoes.html" class="header__nav-link">Inscrições</a>
+        <a href="pages/galeria.html" class="header__nav-link">Galeria</a>
+      </nav>
+      
+      <button class="header__menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="public/imagens/DSC05514-Enhanced-NR.jpg" alt="IBRMusic" class="hero__background parallax">
+    
+    <div class="hero__content fade-in">
+      <div class="hero__logo">
+        <img src="public/logos/LOGO-IBR.png" alt="IBRMusic">
+      </div>
+      
+      <h1 class="hero__title">Excelência em Educação Musical</h1>
+      
+      <p class="hero__subtitle">
+        Formando músicos profissionais com paixão, técnica e dedicação. 
+        Descubra o seu potencial musical conosco.
+      </p>
+      
+      <div class="hero__cta">
+        <a href="pages/inscricoes.html" class="btn btn--primary">Fazer Inscrição</a>
+        <a href="pages/quem-somos.html" class="btn btn--secondary">Conheça-nos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features section">
+    <div class="container">
+      <h2 class="section__title reveal">Por que escolher a IBRMusic?</h2>
+      <p class="section__subtitle reveal reveal-delay-1">
+        Oferecemos uma experiência educacional única, combinando tradição e inovação
+      </p>
+      
+      <div class="features__grid">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-card__icon">🎵</div>
+          <h3 class="feature-card__title">Excelência Musical</h3>
+          <p class="feature-card__text">
+            Professores altamente qualificados e metodologia comprovada para o desenvolvimento musical completo.
+          </p>
+        </div>
+        
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-card__icon">🎹</div>
+          <h3 class="feature-card__title">Infraestrutura Moderna</h3>
+          <p class="feature-card__text">
+            Salas de aula equipadas com instrumentos de alta qualidade e tecnologia de ponta.
+          </p>
+        </div>
+        
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-card__icon">🌟</div>
+          <h3 class="feature-card__title">Formação Integral</h3>
+          <p class="feature-card__text">
+            Desenvolvimento técnico, artístico e humano para formar músicos completos e profissionais.
+          </p>
+        </div>
+        
+        <div class="feature-card reveal reveal-delay-4">
+          <div class="feature-card__icon">🎭</div>
+          <h3 class="feature-card__title">Experiências Únicas</h3>
+          <p class="feature-card__text">
+            Apresentações, workshops e eventos que enriquecem a jornada musical dos nossos alunos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview Section -->
+  <section class="section" style="background: var(--color-bg-light);">
+    <div class="container">
+      <div class="about-content">
+        <h2 class="section__title reveal">Sobre a IBRMusic</h2>
+        <div class="about-content__text reveal reveal-delay-1">
+          <p>
+            A IBRMusic é uma instituição dedicada à excelência em educação musical, 
+            oferecendo formação completa para músicos de todos os níveis. Nossa missão 
+            é desenvolver talentos, cultivar paixão pela música e formar profissionais 
+            que transformam o mundo através da arte.
+          </p>
+          <p>
+            Com uma equipe de professores experientes e uma metodologia inovadora, 
+            proporcionamos uma experiência educacional única que combina técnica, 
+            criatividade e expressão artística.
+          </p>
+        </div>
+        
+        <div style="text-align: center; margin-top: var(--spacing-lg);">
+          <a href="pages/quem-somos.html" class="btn btn--primary reveal reveal-delay-2">
+            Saiba Mais
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background: linear-gradient(135deg, #0071e3 0%, #1d4ed8 100%); color: white;">
+    <div class="container">
+      <div class="text-center reveal">
+        <h2 class="section__title" style="color: white; margin-bottom: var(--spacing-md);">
+          Pronto para começar sua jornada musical?
+        </h2>
+        <p class="section__subtitle" style="color: rgba(255, 255, 255, 0.9); margin-bottom: var(--spacing-lg);">
+          Inscreva-se agora e faça parte da família IBRMusic
+        </p>
+        <a href="pages/inscricoes.html" class="btn btn--secondary" style="background: white; color: var(--color-primary); border: none;">
+          Fazer Inscrição
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__logo">
+        <img src="public/logos/LOGO-IBR.png" alt="IBRMusic">
+      </div>
+      <p class="footer__text">
+        © 2024 IBRMusic. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

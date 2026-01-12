@@ -1,0 +1,218 @@
+<!-- Desenvolvido por Geêndersom Araújo -->
+<!-- 12/01/2026 -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inscreva-se nas próximas audições da IBRMusic">
+  <title>Inscrições - IBRMusic</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__container">
+      <a href="../index.html" class="header__logo">
+        <img src="../public/logos/LOGO-IBR.png" alt="IBRMusic Logo">
+      </a>
+      
+      <nav class="header__nav">
+        <a href="../index.html" class="header__nav-link">Home</a>
+        <a href="quem-somos.html" class="header__nav-link">Quem Somos</a>
+        <a href="missao-visao-valores.html" class="header__nav-link">Missão, Visão e Valores</a>
+        <a href="inscricoes.html" class="header__nav-link">Inscrições</a>
+        <a href="galeria.html" class="header__nav-link">Galeria</a>
+      </nav>
+      
+      <button class="header__menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Inscriptions Hero -->
+  <section class="inscriptions-hero section">
+    <div class="container">
+      <h1 class="section__title reveal">Inscrições</h1>
+      <p class="section__subtitle reveal reveal-delay-1">
+        Inscreva-se para as próximas audições e faça parte da família IBRMusic
+      </p>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="form-container reveal">
+        <form class="inscription-form" id="inscriptionForm">
+          <div class="form-group">
+            <label for="nome" class="form-label">Nome Completo *</label>
+            <input 
+              type="text" 
+              id="nome" 
+              name="nome" 
+              class="form-input" 
+              placeholder="Seu nome completo"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">E-mail *</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-input" 
+              placeholder="seu@email.com"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="telefone" class="form-label">Telefone *</label>
+            <input 
+              type="tel" 
+              id="telefone" 
+              name="telefone" 
+              class="form-input" 
+              placeholder="(00) 00000-0000"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="instrumento" class="form-label">Instrumento de Interesse *</label>
+            <select id="instrumento" name="instrumento" class="form-select" required>
+              <option value="">Selecione um instrumento</option>
+              <option value="piano">Piano</option>
+              <option value="violino">Violino</option>
+              <option value="viola">Viola</option>
+              <option value="violoncelo">Violoncelo</option>
+              <option value="contrabaixo">Contrabaixo</option>
+              <option value="flauta">Flauta</option>
+              <option value="clarinete">Clarinete</option>
+              <option value="oboé">Oboé</option>
+              <option value="fagote">Fagote</option>
+              <option value="trompete">Trompete</option>
+              <option value="trompa">Trompa</option>
+              <option value="trombone">Trombone</option>
+              <option value="tuba">Tuba</option>
+              <option value="percussao">Percussão</option>
+              <option value="canto">Canto</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="nivel" class="form-label">Nível de Experiência *</label>
+            <select id="nivel" name="nivel" class="form-select" required>
+              <option value="">Selecione seu nível</option>
+              <option value="iniciante">Iniciante</option>
+              <option value="intermediario">Intermediário</option>
+              <option value="avancado">Avançado</option>
+              <option value="profissional">Profissional</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mensagem" class="form-label">Mensagem (Opcional)</label>
+            <textarea 
+              id="mensagem" 
+              name="mensagem" 
+              class="form-textarea" 
+              placeholder="Conte-nos um pouco sobre você e sua paixão pela música..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">
+            Enviar Inscrição
+          </button>
+
+          <div class="form-success">
+            ✓ Inscrição enviada com sucesso! Entraremos em contato em breve.
+          </div>
+        </form>
+      </div>
+
+      <!-- Info Section -->
+      <div class="about-content" style="max-width: 800px; margin: var(--spacing-xl) auto 0;">
+        <div class="about-content__text reveal reveal-delay-2">
+          <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: var(--spacing-md); text-align: center;">
+            Processo de Seleção
+          </h2>
+          <p>
+            Após o envio da sua inscrição, nossa equipe entrará em contato para 
+            agendar uma audição. O processo é simples e acolhedor, criado para 
+            conhecer você e seu potencial musical.
+          </p>
+          
+          <h3 style="font-size: 1.5rem; font-weight: 600; margin-top: var(--spacing-md); margin-bottom: var(--spacing-sm);">
+            O que esperar:
+          </h3>
+          <ul style="list-style: none; padding-left: 0;">
+            <li style="margin-bottom: var(--spacing-sm); padding-left: var(--spacing-md); position: relative;">
+              <span style="position: absolute; left: 0; color: var(--color-primary); font-weight: bold;">1.</span>
+              <strong>Análise da Inscrição:</strong> Revisaremos suas informações e experiência
+            </li>
+            <li style="margin-bottom: var(--spacing-sm); padding-left: var(--spacing-md); position: relative;">
+              <span style="position: absolute; left: 0; color: var(--color-primary); font-weight: bold;">2.</span>
+              <strong>Contato:</strong> Entraremos em contato para agendar a audição
+            </li>
+            <li style="margin-bottom: var(--spacing-sm); padding-left: var(--spacing-md); position: relative;">
+              <span style="position: absolute; left: 0; color: var(--color-primary); font-weight: bold;">3.</span>
+              <strong>Audition:</strong> Uma conversa e apresentação musical (se aplicável)
+            </li>
+            <li style="margin-bottom: var(--spacing-sm); padding-left: var(--spacing-md); position: relative;">
+              <span style="position: absolute; left: 0; color: var(--color-primary); font-weight: bold;">4.</span>
+              <strong>Resultado:</strong> Comunicação do resultado e próximos passos
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background: var(--color-bg-light);">
+    <div class="container">
+      <div class="text-center reveal">
+        <h2 class="section__title" style="margin-bottom: var(--spacing-md);">
+          Dúvidas?
+        </h2>
+        <p class="section__subtitle" style="margin-bottom: var(--spacing-lg);">
+          Entre em contato conosco ou visite nossa página "Quem Somos" para saber mais sobre a IBRMusic
+        </p>
+        <a href="quem-somos.html" class="btn btn--primary">
+          Conheça Mais
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__logo">
+        <img src="../public/logos/LOGO-IBR.png" alt="IBRMusic">
+      </div>
+      <p class="footer__text">
+        © 2024 IBRMusic. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="../js/main.js"></script>
+  <script src="../js/animations.js"></script>
+</body>
+</html>

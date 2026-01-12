@@ -1,0 +1,117 @@
+// Desenvolvido por Geêndersom Araújo
+// 12/01/2026
+
+// Animations JavaScript - Scroll reveal e animações
+
+// Intersection Observer para scroll reveal
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Opcional: parar de observar após animar
+      // observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// Inicializar animações quando DOM estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+  // Selecionar todos os elementos com classes de animação
+  const animatedElements = document.querySelectorAll(
+    '.reveal, .fade-in, .fade-in-up, .slide-in-left, .slide-in-right, .scale-in, .stagger-item, .fade-stagger'
+  );
+  
+  // Observar cada elemento
+  animatedElements.forEach(element => {
+    observer.observe(element);
+  });
+  
+  // Animação especial para hero
+  const heroContent = document.querySelector('.hero__content');
+  if (heroContent) {
+    setTimeout(() => {
+      heroContent.style.opacity = '1';
+      heroContent.style.transform = 'translateY(0)';
+    }, 100);
+  }
+  
+  // Animação de texto reveal
+  const textReveals = document.querySelectorAll('.text-reveal');
+  textReveals.forEach(textReveal => {
+    observer.observe(textReveal);
+    
+    textReveal.addEventListener('animationend', function() {
+      const spans = textReveal.querySelectorAll('span');
+      spans.forEach((span, index) => {
+        setTimeout(() => {
+          span.style.opacity = '1';
+          span.style.transform = 'translateY(0)';
+        }, index * 50);
+      });
+    });
+  });
+  
+  // Parallax sutil para elementos com classe parallax
+  const parallaxElements = document.querySelectorAll('.parallax');
+  
+  if (parallaxElements.length > 0) {
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      
+      parallaxElements.forEach(element => {
+        const rate = scrolled * 0.3;
+        element.style.transform = `translateY(${rate}px)`;
+      });
+    });
+  }
+  
+  // Animação de contador (se houver)
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    observer.observe(counter);
+    
+    counter.addEventListener('animationstart', function() {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const duration = 2000; // 2 segundos
+      const increment = target / (duration / 16); // 60fps
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.textContent = Math.floor(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target;
+        }
+      };
+      
+      updateCounter();
+    });
+  });
+});
+
+// Função para animar elementos manualmente
+function animateElement(element, animationClass) {
+  element.classList.add(animationClass);
+  setTimeout(() => {
+    element.classList.add('visible');
+  }, 10);
+}
+
+// Função para resetar animação
+function resetAnimation(element) {
+  element.classList.remove('visible');
+  void element.offsetWidth; // Trigger reflow
+}
+
+// Exportar funções se necessário
+if (typeof window !== 'undefined') {
+  window.animateElement = animateElement;
+  window.resetAnimation = resetAnimation;
+}
