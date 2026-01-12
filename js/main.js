@@ -24,14 +24,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Header color change based on quem-somos section
+      // Only change when white section actually touches the header (no black background visible)
       if (quemSomosSection) {
         const sectionRect = quemSomosSection.getBoundingClientRect();
         const headerHeight = header.offsetHeight;
         const sectionTop = sectionRect.top;
         const sectionBottom = sectionRect.bottom;
         
-        // When section is approaching header (within 200px of top)
-        if (sectionTop <= headerHeight + 200 && sectionBottom >= 0) {
+        // Header becomes white only when white section touches it (sectionTop <= headerHeight)
+        // And stays white while section is visible
+        if (sectionTop <= headerHeight && sectionBottom >= 0) {
           header.classList.add('header--white');
         } else {
           header.classList.remove('header--white');
@@ -39,12 +41,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Early animation trigger for quem-somos elements
-      if (quemSomosTitle && quemSomosText && quemSomosImage) {
+      // Trigger when section is entering viewport (much earlier)
+      if (quemSomosTitle && quemSomosText && quemSomosImage && quemSomosSection) {
         const sectionRect = quemSomosSection.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         
-        // Trigger animations when section is approaching (80% of viewport)
-        if (sectionRect.top < viewportHeight * 0.8 && sectionRect.bottom > 0) {
+        // Trigger animations when section is entering viewport (when top is at 100% of viewport)
+        // This ensures title and text are fully visible before header changes
+        if (sectionRect.top < viewportHeight && sectionRect.bottom > 0) {
           quemSomosTitle.classList.add('visible');
           quemSomosText.classList.add('visible');
           quemSomosImage.classList.add('visible');
@@ -60,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const sectionRect = quemSomosSection.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         
-        if (sectionRect.top < viewportHeight * 0.8 && sectionRect.bottom > 0) {
+        // Trigger when section is in viewport
+        if (sectionRect.top < viewportHeight && sectionRect.bottom > 0) {
           quemSomosTitle.classList.add('visible');
           quemSomosText.classList.add('visible');
           quemSomosImage.classList.add('visible');
