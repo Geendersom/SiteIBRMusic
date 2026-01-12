@@ -25,7 +25,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
+  background: 
+    linear-gradient(to bottom, rgba(5, 6, 8, 1) 0%, rgba(5, 6, 8, 0.95) 7.5%, rgba(5, 6, 8, 0.7) 20%, rgba(5, 6, 8, 0.3) 35%, transparent 50%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
   z-index: 1;
   transition: opacity 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -875,6 +877,7 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+
 /* Quem Somos Section - Light Background */
 .quem-somos-section {
   background: #ffffff;
@@ -910,8 +913,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   opacity: 0;
-  transform: translateY(120px);
-  transition: opacity 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(60px);
+  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: visible;
   margin-bottom: var(--spacing-sm);
   will-change: transform, opacity;
@@ -919,10 +922,6 @@
 
 .quem-somos-title.visible {
   opacity: 1;
-}
-
-.quem-somos-title.parallax-active {
-  /* Transform is controlled by JavaScript for smooth parallax */
 }
 
 .quem-somos-text {
@@ -938,8 +937,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s, transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+  transform: translateY(30px);
+  transition: opacity 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   white-space: normal;
   word-wrap: break-word;
   overflow: visible;
@@ -969,7 +968,7 @@
   overflow: visible;
   min-height: 500px;
   gap: var(--spacing-md);
-  padding-top: var(--spacing-xl);
+  padding-top: 0;
 }
 
 .quem-somos-image {
@@ -978,6 +977,20 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+
+.quem-somos-image.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quem-somos-image.image-fully-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .quem-somos-image-wrapper {

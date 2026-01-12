@@ -13,8 +13,9 @@ const observer = new IntersectionObserver(function(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      // Opcional: parar de observar após animar
-      // observer.unobserve(entry.target);
+    } else {
+      // Remover classe quando sair da viewport para permitir animação novamente
+      entry.target.classList.remove('visible');
     }
   });
 }, observerOptions);

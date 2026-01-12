@@ -13,262 +13,248 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (header) {
     let lastScroll = 0;
+    let ticking = false;
     
-    window.addEventListener('scroll', function() {
-      const currentScroll = window.pageYOffset;
+    function handleScroll() {
+      if (ticking) return;
+      ticking = true;
       
-      if (currentScroll > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-      
-      // Header color change based on quem-somos section
-      // Only change when white section actually touches the header (no black background visible)
-      if (quemSomosSection) {
-        const sectionRect = quemSomosSection.getBoundingClientRect();
-        const headerHeight = header.offsetHeight;
-        const sectionTop = sectionRect.top;
-        const sectionBottom = sectionRect.bottom;
+      requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset;
         
-        // Header becomes white only when white section touches it (sectionTop <= headerHeight)
-        // And stays white while section is visible
-        if (sectionTop <= headerHeight && sectionBottom >= 0) {
-          header.classList.add('header--white');
+        if (currentScroll > 50) {
+          header.classList.add('scrolled');
         } else {
-          header.classList.remove('header--white');
-        }
-      }
-      
-      // Title appears early and parallax effect
-      if (quemSomosTitle && quemSomosSection) {
-        const sectionRect = quemSomosSection.getBoundingClientRect();
-        const headerHeight = header.offsetHeight;
-        const sectionTop = sectionRect.top;
-        const viewportHeight = window.innerHeight;
-        
-        // Show title when white section starts appearing (enters viewport)
-        if (sectionTop < viewportHeight && sectionRect.bottom > 0) {
-          quemSomosTitle.classList.add('visible');
+          header.classList.remove('scrolled');
         }
         
-        // Parallax effect: title starts higher and descends to final position
-        // Start parallax when section is entering viewport
-        if (sectionTop < viewportHeight && sectionTop > -viewportHeight && sectionRect.bottom > 0) {
-          // Calculate progress: 0 when section enters viewport, 1 when section reaches final position
-          // Final position is when section is well positioned (around headerHeight + 200px)
-          const startPoint = viewportHeight; // When section enters viewport
-          const endPoint = headerHeight + 200; // When section reaches final position
-          const currentPos = sectionTop;
+        // ===== HEADER MUDA DE COR QUANDO SEÇÃO BRANCA TOCA =====
+        if (quemSomosSection) {
+          const sectionRect = quemSomosSection.getBoundingClientRect();
+          const headerHeight = header.offsetHeight;
+          const sectionTop = sectionRect.top;
+          const sectionBottom = sectionRect.bottom;
           
-          // Calculate progress (0 to 1)
-          const progress = Math.max(0, Math.min(1, (startPoint - currentPos) / (startPoint - endPoint)));
-          
-          // Parallax offset: starts at 120px (higher) and goes to 0 (final position)
-          const parallaxOffset = 120 * (1 - progress);
-          
-          // Use requestAnimationFrame for smooth parallax
-          requestAnimationFrame(() => {
-            quemSomosTitle.style.transform = `translateY(${parallaxOffset}px)`;
-            quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            quemSomosTitle.classList.add('parallax-active');
-          });
-        } else if (sectionTop >= viewportHeight) {
-          // Reset when section is above viewport
-          requestAnimationFrame(() => {
-            quemSomosTitle.style.transform = 'translateY(120px)';
-            quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          });
-        } else if (sectionTop <= headerHeight + 200) {
-          // Lock at final position when section reaches final position
-          requestAnimationFrame(() => {
-            quemSomosTitle.style.transform = 'translateY(0)';
-            quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          });
+          // Header torna-se branco quando a seção branca toca o header
+          if (sectionTop <= headerHeight && sectionBottom >= 0) {
+            header.classList.add('header--white');
+          } else {
+            header.classList.remove('header--white');
+          }
         }
-      }
-      
-      // Early animation trigger for other quem-somos elements
-      if (quemSomosText && quemSomosImage && quemSomosSection) {
-        const sectionRect = quemSomosSection.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
         
-        // Trigger animations when section is entering viewport
-        if (sectionRect.top < viewportHeight && sectionRect.bottom > 0) {
-          quemSomosText.classList.add('visible');
-          quemSomosImage.classList.add('visible');
+        // ===== TÍTULO APARECE QUANDO BRANCO ESTÁ 100% =====
+        if (quemSomosTitle && quemSomosSection) {
+          const sectionRect = quemSomosSection.getBoundingClientRect();
+          const sectionTop = sectionRect.top;
+          const viewportHeight = window.innerHeight;
+          const headerHeight = header.offsetHeight;
+          
+          // Título aparece quando branco está 100% visível (quando header está branco)
+          if (header.classList.contains('header--white') && sectionTop <= headerHeight + 50 && sectionRect.bottom > 0) {
+            quemSomosTitle.classList.add('visible');
+            
+            // Parallax: título desce suavemente até posição final conforme scroll
+            const parallaxStart = headerHeight + 50;
+            const parallaxEnd = headerHeight + 200;
+            const parallaxProgress = Math.max(0, Math.min(1, (parallaxStart - sectionTop) / (parallaxStart - parallaxEnd)));
+            const parallaxOffset = 60 * (1 - parallaxProgress);
+            
+            requestAnimationFrame(() => {
+              quemSomosTitle.style.transform = `translateY(${parallaxOffset}px)`;
+              quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            });
+          } else {
+            // Remover classe quando sair da viewport para permitir animação novamente
+            quemSomosTitle.classList.remove('visible');
+            quemSomosTitle.style.opacity = '0';
+            quemSomosTitle.style.transform = 'translateY(60px)';
+          }
         }
-      }
-      
-      lastScroll = currentScroll;
-    });
-    
-    // Initial check for quem-somos animations
-    if (quemSomosText && quemSomosImage && quemSomosSection) {
-      const checkInitialVisibility = () => {
-        const sectionRect = quemSomosSection.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
         
-        // Trigger when section is in viewport (except title, which triggers on header change)
-        if (sectionRect.top < viewportHeight && sectionRect.bottom > 0) {
-          quemSomosText.classList.add('visible');
-          quemSomosImage.classList.add('visible');
+        // ===== IMAGEM APARECE PROGRESSIVAMENTE =====
+        if (quemSomosImage && quemSomosSection) {
+          const sectionRect = quemSomosSection.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const imageRect = quemSomosImage.getBoundingClientRect();
+          
+          // Calcular visibilidade da imagem
+          const imageTop = imageRect.top;
+          const imageBottom = imageRect.bottom;
+          const imageHeight = imageRect.height;
+          const visibleHeight = Math.min(imageBottom, viewportHeight) - Math.max(imageTop, 0);
+          const imageVisibility = Math.max(0, Math.min(1, visibleHeight / imageHeight));
+          
+          // Imagem aparece progressivamente
+          if (imageVisibility > 0 && sectionRect.bottom > 0 && sectionRect.top < viewportHeight) {
+            const imageOpacity = Math.min(1, imageVisibility * 1.2);
+            const imageOffset = 40 * (1 - imageVisibility);
+            
+            requestAnimationFrame(() => {
+              quemSomosImage.style.opacity = imageOpacity;
+              quemSomosImage.style.transform = `translateY(${imageOffset}px)`;
+              quemSomosImage.classList.add('visible');
+            });
+          } else if (sectionRect.bottom < 0 || sectionRect.top > viewportHeight) {
+            // Remover classe quando sair da viewport para permitir animação novamente
+            quemSomosImage.classList.remove('visible');
+            quemSomosImage.style.opacity = '0';
+            quemSomosImage.style.transform = 'translateY(40px)';
+          }
         }
-      };
-      
-      // Check on load
-      checkInitialVisibility();
-      
-      // Also check after a short delay to ensure DOM is ready
-      setTimeout(checkInitialVisibility, 100);
+        
+        // ===== TEXTO APARECE PROGRESSIVAMENTE =====
+        if (quemSomosText && quemSomosSection) {
+          const sectionRect = quemSomosSection.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          
+          if (sectionRect.top < viewportHeight * 0.7 && sectionRect.bottom > 0) {
+            const textProgress = Math.max(0, Math.min(1, (viewportHeight * 0.7 - sectionRect.top) / (viewportHeight * 0.3)));
+            const textOpacity = Math.min(1, textProgress);
+            const textOffset = 30 * (1 - textProgress);
+            
+            requestAnimationFrame(() => {
+              quemSomosText.style.opacity = textOpacity;
+              quemSomosText.style.transform = `translateY(${textOffset}px)`;
+              if (textOpacity > 0.3) {
+                quemSomosText.classList.add('visible');
+              }
+            });
+          } else if (sectionRect.bottom < 0 || sectionRect.top > viewportHeight) {
+            // Remover classe quando sair da viewport para permitir animação novamente
+            quemSomosText.classList.remove('visible');
+            quemSomosText.style.opacity = '0';
+            quemSomosText.style.transform = 'translateY(30px)';
+          }
+        }
+        
+        lastScroll = currentScroll;
+        ticking = false;
+      });
     }
     
-    // Initial check for title visibility and parallax
-    if (quemSomosTitle && quemSomosSection && header) {
-      const checkInitialState = () => {
-        const sectionRect = quemSomosSection.getBoundingClientRect();
-        const headerHeight = header.offsetHeight;
-        const sectionTop = sectionRect.top;
-        const viewportHeight = window.innerHeight;
-        
-        // Show title if section is in viewport
-        if (sectionTop < viewportHeight && sectionRect.bottom > 0) {
-          quemSomosTitle.classList.add('visible');
-        }
-        
-        // Set initial parallax position
-        if (sectionTop < viewportHeight && sectionTop > -viewportHeight && sectionRect.bottom > 0) {
-          const startPoint = viewportHeight;
-          const endPoint = headerHeight + 200;
-          const currentPos = sectionTop;
-          const progress = Math.max(0, Math.min(1, (startPoint - currentPos) / (startPoint - endPoint)));
-          const parallaxOffset = 120 * (1 - progress);
-          quemSomosTitle.style.transform = `translateY(${parallaxOffset}px)`;
-          quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          quemSomosTitle.classList.add('parallax-active');
-        }
-      };
-      
-      setTimeout(checkInitialState, 100);
-    }
-  }
-  
-  // Mobile menu toggle
-  const menuToggle = document.querySelector('.header__menu-toggle');
-  const nav = document.querySelector('.header__nav');
-  
-  if (menuToggle && nav) {
-    menuToggle.addEventListener('click', function() {
-      nav.classList.toggle('active');
-      
-      // Animate hamburger
-      const spans = menuToggle.querySelectorAll('span');
-      if (nav.classList.contains('active')) {
-        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-      } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-      }
-    });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Close menu when clicking on a link
-    const navLinks = nav.querySelectorAll('.header__nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        nav.classList.remove('active');
+    // Initial checks
+    handleScroll();
+    
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.header__menu-toggle');
+    const nav = document.querySelector('.header__nav');
+    
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        
+        // Animate hamburger
         const spans = menuToggle.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-      });
-    });
-  }
-  
-  // Smooth scroll for anchor links (if any)
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href !== '#' && href.length > 1) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      }
-    });
-  });
-  
-  // Form submission handler
-  const form = document.querySelector('.inscription-form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Get form data
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
-      
-      // Validate
-      let isValid = true;
-      const requiredFields = form.querySelectorAll('[required]');
-      
-      requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-          isValid = false;
-          field.style.borderColor = '#dc3545';
+        if (nav.classList.contains('active')) {
+          spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
         } else {
-          field.style.borderColor = '';
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
         }
       });
       
-      // Validate email format
-      const emailField = form.querySelector('[type="email"]');
-      if (emailField && emailField.value) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailField.value)) {
-          isValid = false;
-          emailField.style.borderColor = '#dc3545';
+      // Close menu when clicking on a link
+      const navLinks = nav.querySelectorAll('.header__nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          nav.classList.remove('active');
+          const spans = menuToggle.querySelectorAll('span');
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        });
+      });
+    }
+    
+    // Smooth scroll for anchor links (if any)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href.length > 1) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
         }
-      }
-      
-      if (!isValid) {
-        return;
-      }
-      
-      // Show success message
-      const successMessage = document.querySelector('.form-success');
-      if (successMessage) {
-        successMessage.classList.add('active');
-        form.reset();
-        
-        // Scroll to success message
-        successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
-        // Hide after 5 seconds
-        setTimeout(() => {
-          successMessage.classList.remove('active');
-        }, 5000);
-      }
-      
-      // Log form data (in production, send to server)
-      console.log('Form submitted:', data);
+      });
     });
-  }
-  
-  // Parallax effect for hero images
-  const heroBackground = document.querySelector('.hero__background');
-  if (heroBackground) {
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * 0.5;
-      heroBackground.style.transform = `translateY(${rate}px)`;
-    });
+    
+    // Form submission handler
+    const form = document.querySelector('.inscription-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        // Validate
+        let isValid = true;
+        const requiredFields = form.querySelectorAll('[required]');
+        
+        requiredFields.forEach(field => {
+          if (!field.value.trim()) {
+            isValid = false;
+            field.style.borderColor = '#dc3545';
+          } else {
+            field.style.borderColor = '';
+          }
+        });
+        
+        // Validate email format
+        const emailField = form.querySelector('[type="email"]');
+        if (emailField && emailField.value) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(emailField.value)) {
+            isValid = false;
+            emailField.style.borderColor = '#dc3545';
+          }
+        }
+        
+        if (!isValid) {
+          return;
+        }
+        
+        // Show success message
+        const successMessage = form.querySelector('.form-success');
+        if (successMessage) {
+          successMessage.classList.add('active');
+          form.reset();
+          
+          // Scroll to success message
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          
+          // Hide after 5 seconds
+          setTimeout(() => {
+            successMessage.classList.remove('active');
+          }, 5000);
+        }
+        
+        // Log form data (in production, send to server)
+        console.log('Form submitted:', data);
+      });
+    }
+    
+    // Parallax effect for hero images
+    const heroBackground = document.querySelector('.hero__background');
+    if (heroBackground) {
+      window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * 0.5;
+        heroBackground.style.transform = `translateY(${rate}px)`;
+      });
+    }
   }
 });
 
