@@ -40,16 +40,61 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
       
-      // Early animation trigger for quem-somos elements
-      // Trigger when section is entering viewport (much earlier)
-      if (quemSomosTitle && quemSomosText && quemSomosImage && quemSomosSection) {
+      // Title appears early and parallax effect
+      if (quemSomosTitle && quemSomosSection) {
+        const sectionRect = quemSomosSection.getBoundingClientRect();
+        const headerHeight = header.offsetHeight;
+        const sectionTop = sectionRect.top;
+        const viewportHeight = window.innerHeight;
+        
+        // Show title when white section starts appearing (enters viewport)
+        if (sectionTop < viewportHeight && sectionRect.bottom > 0) {
+          quemSomosTitle.classList.add('visible');
+        }
+        
+        // Parallax effect: title starts higher and descends to final position
+        // Start parallax when section is entering viewport
+        if (sectionTop < viewportHeight && sectionTop > -viewportHeight && sectionRect.bottom > 0) {
+          // Calculate progress: 0 when section enters viewport, 1 when section reaches final position
+          // Final position is when section is well positioned (around headerHeight + 200px)
+          const startPoint = viewportHeight; // When section enters viewport
+          const endPoint = headerHeight + 200; // When section reaches final position
+          const currentPos = sectionTop;
+          
+          // Calculate progress (0 to 1)
+          const progress = Math.max(0, Math.min(1, (startPoint - currentPos) / (startPoint - endPoint)));
+          
+          // Parallax offset: starts at 120px (higher) and goes to 0 (final position)
+          const parallaxOffset = 120 * (1 - progress);
+          
+          // Use requestAnimationFrame for smooth parallax
+          requestAnimationFrame(() => {
+            quemSomosTitle.style.transform = `translateY(${parallaxOffset}px)`;
+            quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            quemSomosTitle.classList.add('parallax-active');
+          });
+        } else if (sectionTop >= viewportHeight) {
+          // Reset when section is above viewport
+          requestAnimationFrame(() => {
+            quemSomosTitle.style.transform = 'translateY(120px)';
+            quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          });
+        } else if (sectionTop <= headerHeight + 200) {
+          // Lock at final position when section reaches final position
+          requestAnimationFrame(() => {
+            quemSomosTitle.style.transform = 'translateY(0)';
+            quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          });
+        }
+      }
+      
+      // Early animation trigger for other quem-somos elements
+      if (quemSomosText && quemSomosImage && quemSomosSection) {
         const sectionRect = quemSomosSection.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         
-        // Trigger animations when section is entering viewport (when top is at 100% of viewport)
-        // This ensures title and text are fully visible before header changes
+        // Trigger animations when section is entering viewport
         if (sectionRect.top < viewportHeight && sectionRect.bottom > 0) {
-          quemSomosTitle.classList.add('visible');
           quemSomosText.classList.add('visible');
           quemSomosImage.classList.add('visible');
         }
@@ -59,14 +104,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Initial check for quem-somos animations
-    if (quemSomosTitle && quemSomosText && quemSomosImage && quemSomosSection) {
+    if (quemSomosText && quemSomosImage && quemSomosSection) {
       const checkInitialVisibility = () => {
         const sectionRect = quemSomosSection.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         
-        // Trigger when section is in viewport
+        // Trigger when section is in viewport (except title, which triggers on header change)
         if (sectionRect.top < viewportHeight && sectionRect.bottom > 0) {
-          quemSomosTitle.classList.add('visible');
           quemSomosText.classList.add('visible');
           quemSomosImage.classList.add('visible');
         }
@@ -77,6 +121,35 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Also check after a short delay to ensure DOM is ready
       setTimeout(checkInitialVisibility, 100);
+    }
+    
+    // Initial check for title visibility and parallax
+    if (quemSomosTitle && quemSomosSection && header) {
+      const checkInitialState = () => {
+        const sectionRect = quemSomosSection.getBoundingClientRect();
+        const headerHeight = header.offsetHeight;
+        const sectionTop = sectionRect.top;
+        const viewportHeight = window.innerHeight;
+        
+        // Show title if section is in viewport
+        if (sectionTop < viewportHeight && sectionRect.bottom > 0) {
+          quemSomosTitle.classList.add('visible');
+        }
+        
+        // Set initial parallax position
+        if (sectionTop < viewportHeight && sectionTop > -viewportHeight && sectionRect.bottom > 0) {
+          const startPoint = viewportHeight;
+          const endPoint = headerHeight + 200;
+          const currentPos = sectionTop;
+          const progress = Math.max(0, Math.min(1, (startPoint - currentPos) / (startPoint - endPoint)));
+          const parallaxOffset = 120 * (1 - progress);
+          quemSomosTitle.style.transform = `translateY(${parallaxOffset}px)`;
+          quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          quemSomosTitle.classList.add('parallax-active');
+        }
+      };
+      
+      setTimeout(checkInitialState, 100);
     }
   }
   

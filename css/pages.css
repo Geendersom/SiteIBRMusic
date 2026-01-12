@@ -910,14 +910,19 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(120px);
+  transition: opacity 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: visible;
+  margin-bottom: var(--spacing-sm);
+  will-change: transform, opacity;
 }
 
 .quem-somos-title.visible {
   opacity: 1;
-  transform: translateY(0);
+}
+
+.quem-somos-title.parallax-active {
+  /* Transform is controlled by JavaScript for smooth parallax */
 }
 
 .quem-somos-text {
@@ -928,13 +933,13 @@
   font-weight: 300;
   text-align: left;
   max-width: 90%;
-  margin-top: auto;
+  margin-top: 0;
   font-feature-settings: "kern" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s, transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+  transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s, transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
   white-space: normal;
   word-wrap: break-word;
   overflow: visible;
@@ -959,10 +964,12 @@
 .quem-somos-content-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
   overflow: visible;
   min-height: 500px;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-xl);
 }
 
 .quem-somos-image {
