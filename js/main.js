@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const quemSomosSection = document.querySelector('.quem-somos-section');
   const quemSomosTitle = document.querySelector('.quem-somos-title');
   const quemSomosText = document.querySelector('.quem-somos-text');
+  const conviteSection = document.querySelector('.convite-section');
   
   if (header) {
     let lastScroll = 0;
@@ -28,8 +29,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // ===== HEADER MUDA DE COR QUANDO SEÇÃO BRANCA TOCA =====
-        // A seção "Quem Somos" agora tem fundo escuro, então não muda o header para branco
-        // Removida a lógica de mudança de cor do header para esta seção
+        // Seção de convite (branca) - mudar header para branco quando tocar
+        // Quando a seção branca sair do topo, voltar header para preto imediatamente
+        if (conviteSection) {
+          const conviteRect = conviteSection.getBoundingClientRect();
+          const headerHeight = header.offsetHeight;
+          
+          // Verificar se a seção de convite está tocando o header
+          // Header branco apenas quando a seção branca está visível no topo
+          if (conviteRect.top <= headerHeight && conviteRect.bottom > 0) {
+            header.classList.add('header--white');
+          } else {
+            // Quando a seção branca sair do topo, voltar para preto imediatamente
+            header.classList.remove('header--white');
+          }
+        }
         
         // ===== TÍTULO APARECE QUANDO SEÇÃO ESTÁ VISÍVEL =====
         if (quemSomosTitle && quemSomosSection) {
