@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const quemSomosSection = document.querySelector('.quem-somos-section');
   const quemSomosTitle = document.querySelector('.quem-somos-title');
   const quemSomosText = document.querySelector('.quem-somos-text');
-  const quemSomosImage = document.querySelector('.quem-somos-image');
   
   if (header) {
     let lastScroll = 0;
@@ -29,77 +28,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // ===== HEADER MUDA DE COR QUANDO SEÇÃO BRANCA TOCA =====
-        if (quemSomosSection) {
-          const sectionRect = quemSomosSection.getBoundingClientRect();
-          const headerHeight = header.offsetHeight;
-          const sectionTop = sectionRect.top;
-          const sectionBottom = sectionRect.bottom;
-          
-          // Header torna-se branco quando a seção branca toca o header
-          if (sectionTop <= headerHeight && sectionBottom >= 0) {
-            header.classList.add('header--white');
-          } else {
-            header.classList.remove('header--white');
-          }
-        }
+        // A seção "Quem Somos" agora tem fundo escuro, então não muda o header para branco
+        // Removida a lógica de mudança de cor do header para esta seção
         
-        // ===== TÍTULO APARECE QUANDO BRANCO ESTÁ 100% =====
+        // ===== TÍTULO APARECE QUANDO SEÇÃO ESTÁ VISÍVEL =====
         if (quemSomosTitle && quemSomosSection) {
           const sectionRect = quemSomosSection.getBoundingClientRect();
           const sectionTop = sectionRect.top;
           const viewportHeight = window.innerHeight;
-          const headerHeight = header.offsetHeight;
           
-          // Título aparece quando branco está 100% visível (quando header está branco)
-          if (header.classList.contains('header--white') && sectionTop <= headerHeight + 50 && sectionRect.bottom > 0) {
+          // Título aparece quando a seção está visível
+          if (sectionRect.bottom > 0 && sectionTop < viewportHeight) {
             quemSomosTitle.classList.add('visible');
             
-            // Parallax: título desce suavemente até posição final conforme scroll
-            const parallaxStart = headerHeight + 50;
-            const parallaxEnd = headerHeight + 200;
-            const parallaxProgress = Math.max(0, Math.min(1, (parallaxStart - sectionTop) / (parallaxStart - parallaxEnd)));
-            const parallaxOffset = 60 * (1 - parallaxProgress);
-            
+            // Aplicar opacidade e transform
             requestAnimationFrame(() => {
-              quemSomosTitle.style.transform = `translateY(${parallaxOffset}px)`;
-              quemSomosTitle.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+              quemSomosTitle.style.opacity = '1';
+              quemSomosTitle.style.transform = 'translateY(0)';
             });
           } else {
             // Remover classe quando sair da viewport para permitir animação novamente
             quemSomosTitle.classList.remove('visible');
             quemSomosTitle.style.opacity = '0';
             quemSomosTitle.style.transform = 'translateY(60px)';
-          }
-        }
-        
-        // ===== IMAGEM APARECE PROGRESSIVAMENTE =====
-        if (quemSomosImage && quemSomosSection) {
-          const sectionRect = quemSomosSection.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
-          const imageRect = quemSomosImage.getBoundingClientRect();
-          
-          // Calcular visibilidade da imagem
-          const imageTop = imageRect.top;
-          const imageBottom = imageRect.bottom;
-          const imageHeight = imageRect.height;
-          const visibleHeight = Math.min(imageBottom, viewportHeight) - Math.max(imageTop, 0);
-          const imageVisibility = Math.max(0, Math.min(1, visibleHeight / imageHeight));
-          
-          // Imagem aparece progressivamente
-          if (imageVisibility > 0 && sectionRect.bottom > 0 && sectionRect.top < viewportHeight) {
-            const imageOpacity = Math.min(1, imageVisibility * 1.2);
-            const imageOffset = 40 * (1 - imageVisibility);
-            
-            requestAnimationFrame(() => {
-              quemSomosImage.style.opacity = imageOpacity;
-              quemSomosImage.style.transform = `translateY(${imageOffset}px)`;
-              quemSomosImage.classList.add('visible');
-            });
-          } else if (sectionRect.bottom < 0 || sectionRect.top > viewportHeight) {
-            // Remover classe quando sair da viewport para permitir animação novamente
-            quemSomosImage.classList.remove('visible');
-            quemSomosImage.style.opacity = '0';
-            quemSomosImage.style.transform = 'translateY(40px)';
           }
         }
         
