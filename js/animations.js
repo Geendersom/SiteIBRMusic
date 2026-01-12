@@ -3,10 +3,10 @@
 
 // Animations JavaScript - Scroll reveal e animações
 
-// Intersection Observer para scroll reveal
+// Intersection Observer para scroll reveal - Mais contemplativo
 const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+  threshold: 0.15,
+  rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver(function(entries) {
@@ -31,13 +31,12 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(element);
   });
   
-  // Animação especial para hero
+  // Animação especial para hero - Contemplativa e cinematográfica
   const heroContent = document.querySelector('.hero__content');
   if (heroContent) {
     setTimeout(() => {
-      heroContent.style.opacity = '1';
-      heroContent.style.transform = 'translateY(0)';
-    }, 100);
+      heroContent.classList.add('loaded');
+    }, 300);
   }
   
   // Animação de texto reveal
@@ -64,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const scrolled = window.pageYOffset;
       
       parallaxElements.forEach(element => {
-        const rate = scrolled * 0.3;
+        const rate = scrolled * 0.15;
         element.style.transform = `translateY(${rate}px)`;
       });
     });

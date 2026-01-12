@@ -3,11 +3,11 @@
 
 /* Animações CSS - Efeitos suaves e elegantes */
 
-/* Scroll Reveal */
+/* Scroll Reveal - Contemplativo e Cinematográfico */
 .reveal {
   opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(30px);
+  transition: all 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.visible {
@@ -16,26 +16,26 @@
 }
 
 .reveal-delay-1 {
-  transition-delay: 0.1s;
-}
-
-.reveal-delay-2 {
   transition-delay: 0.2s;
 }
 
-.reveal-delay-3 {
-  transition-delay: 0.3s;
-}
-
-.reveal-delay-4 {
+.reveal-delay-2 {
   transition-delay: 0.4s;
 }
 
-/* Fade In */
+.reveal-delay-3 {
+  transition-delay: 0.6s;
+}
+
+.reveal-delay-4 {
+  transition-delay: 0.8s;
+}
+
+/* Fade In - Contemplativo */
 .fade-in-up {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(20px);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-in-up.visible {
@@ -45,18 +45,18 @@
 
 .fade-in {
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-in.visible {
   opacity: 1;
 }
 
-/* Slide */
+/* Slide - Suave e Elegante */
 .slide-in-left {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: all 0.8s ease;
+  transform: translateX(-30px);
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .slide-in-left.visible {
@@ -66,8 +66,8 @@
 
 .slide-in-right {
   opacity: 0;
-  transform: translateX(50px);
-  transition: all 0.8s ease;
+  transform: translateX(30px);
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .slide-in-right.visible {
@@ -87,9 +87,10 @@
   transform: scale(1);
 }
 
-/* Parallax */
+/* Parallax - Sutil e Cinematográfico */
 .parallax {
-  transition: transform 0.3s ease-out;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 /* Hover Effects */
@@ -165,11 +166,11 @@
   animation: gradient-shift 15s ease infinite;
 }
 
-/* Stagger Animation */
+/* Stagger Animation - Ritmo Contemplativo */
 .stagger-item {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.6s ease;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .stagger-item.visible {
@@ -178,17 +179,17 @@
 }
 
 .stagger-item:nth-child(1) { transition-delay: 0.1s; }
-.stagger-item:nth-child(2) { transition-delay: 0.2s; }
-.stagger-item:nth-child(3) { transition-delay: 0.3s; }
-.stagger-item:nth-child(4) { transition-delay: 0.4s; }
-.stagger-item:nth-child(5) { transition-delay: 0.5s; }
-.stagger-item:nth-child(6) { transition-delay: 0.6s; }
+.stagger-item:nth-child(2) { transition-delay: 0.25s; }
+.stagger-item:nth-child(3) { transition-delay: 0.4s; }
+.stagger-item:nth-child(4) { transition-delay: 0.55s; }
+.stagger-item:nth-child(5) { transition-delay: 0.7s; }
+.stagger-item:nth-child(6) { transition-delay: 0.85s; }
 
-/* Smooth Appear */
+/* Smooth Appear - Contemplativo */
 @keyframes smoothAppear {
   from {
     opacity: 0;
-    transform: translateY(30px) scale(0.95);
+    transform: translateY(20px) scale(0.98);
   }
   to {
     opacity: 1;
@@ -197,7 +198,7 @@
 }
 
 .smooth-appear {
-  animation: smoothAppear 0.8s ease-out;
+  animation: smoothAppear 1.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Loading Spinner */
@@ -276,19 +277,21 @@
   animation: bounce 2s infinite;
 }
 
-/* Fade In Stagger */
+/* Fade In Stagger - Contemplativo */
 .fade-stagger {
   opacity: 0;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(15px);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-stagger.visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
-.fade-stagger:nth-child(1) { transition-delay: 0s; }
-.fade-stagger:nth-child(2) { transition-delay: 0.1s; }
-.fade-stagger:nth-child(3) { transition-delay: 0.2s; }
-.fade-stagger:nth-child(4) { transition-delay: 0.3s; }
-.fade-stagger:nth-child(5) { transition-delay: 0.4s; }
-.fade-stagger:nth-child(6) { transition-delay: 0.5s; }
+.fade-stagger:nth-child(1) { transition-delay: 0.1s; }
+.fade-stagger:nth-child(2) { transition-delay: 0.25s; }
+.fade-stagger:nth-child(3) { transition-delay: 0.4s; }
+.fade-stagger:nth-child(4) { transition-delay: 0.55s; }
+.fade-stagger:nth-child(5) { transition-delay: 0.7s; }
+.fade-stagger:nth-child(6) { transition-delay: 0.85s; }
