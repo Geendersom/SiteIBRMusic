@@ -13,7 +13,7 @@
   overflow: hidden;
   background: radial-gradient(ellipse at center, #0a1520 0%, #050608 50%, #000000 100%);
   padding-top: 80px;
-  padding-bottom: var(--spacing-xl);
+  padding-bottom: 0;
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
   /* Transição suave ao sair da viewport */
@@ -154,6 +154,23 @@
   color: white;
   /* Transição suave ao aparecer */
   animation: fadeInSection 2.5s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+}
+
+/* Hero Text Section - Centralizada verticalmente */
+.hero-text-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) 0 0 0;
+}
+
+.hero-text-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes fadeInSection {
