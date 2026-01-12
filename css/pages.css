@@ -896,8 +896,9 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-lg);
   align-items: start;
-  min-height: 600px;
+  min-height: 80vh;
   overflow: visible;
+  position: relative;
 }
 
 .quem-somos-title {
@@ -994,14 +995,19 @@
 }
 
 .quem-somos-image-wrapper {
-  width: 500px;
-  height: 500px;
+  width: 60vw;
+  min-width: 600px;
+  height: 60vw;
+  min-height: 600px;
   border-radius: 50% 0 0 50%;
   overflow: hidden;
   position: absolute;
-  right: -250px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition: box-shadow var(--transition-base);
+  will-change: transform;
 }
 
 .quem-somos-image-wrapper img {
