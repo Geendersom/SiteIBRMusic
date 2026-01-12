@@ -3,10 +3,10 @@
 
 // Animations JavaScript - Scroll reveal e animações
 
-// Intersection Observer para scroll reveal - Mais contemplativo
+// Intersection Observer para scroll reveal - Imperceptível
 const observerOptions = {
-  threshold: 0.15,
-  rootMargin: '0px 0px -100px 0px'
+  threshold: 0.12,
+  rootMargin: '0px 0px -80px 0px'
 };
 
 const observer = new IntersectionObserver(function(entries) {
