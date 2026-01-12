@@ -777,7 +777,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(40, 40, 40, 0.85);
   backdrop-filter: blur(12px);
   width: 50px;
   height: 50px;
@@ -788,16 +788,17 @@
   cursor: pointer;
   transition: all var(--transition-base);
   z-index: 10;
-  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
   font-size: 1.5rem;
-  color: var(--color-text);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .gallery-controls:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(50, 50, 50, 0.95);
   transform: translateY(-50%) scale(1.05);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 1);
 }
 
 .gallery-controls--prev {
