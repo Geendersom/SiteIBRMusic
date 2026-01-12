@@ -6,6 +6,10 @@
 // Header scroll effect
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('.header');
+  const quemSomosSection = document.querySelector('.quem-somos-section');
+  const quemSomosTitle = document.querySelector('.quem-somos-title');
+  const quemSomosText = document.querySelector('.quem-somos-text');
+  const quemSomosImage = document.querySelector('.quem-somos-image');
   
   if (header) {
     let lastScroll = 0;
@@ -19,8 +23,56 @@ document.addEventListener('DOMContentLoaded', function() {
         header.classList.remove('scrolled');
       }
       
+      // Header color change based on quem-somos section
+      if (quemSomosSection) {
+        const sectionRect = quemSomosSection.getBoundingClientRect();
+        const headerHeight = header.offsetHeight;
+        const sectionTop = sectionRect.top;
+        const sectionBottom = sectionRect.bottom;
+        
+        // When section is approaching header (within 200px of top)
+        if (sectionTop <= headerHeight + 200 && sectionBottom >= 0) {
+          header.classList.add('header--white');
+        } else {
+          header.classList.remove('header--white');
+        }
+      }
+      
+      // Early animation trigger for quem-somos elements
+      if (quemSomosTitle && quemSomosText && quemSomosImage) {
+        const sectionRect = quemSomosSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Trigger animations when section is approaching (80% of viewport)
+        if (sectionRect.top < viewportHeight * 0.8 && sectionRect.bottom > 0) {
+          quemSomosTitle.classList.add('visible');
+          quemSomosText.classList.add('visible');
+          quemSomosImage.classList.add('visible');
+        }
+      }
+      
       lastScroll = currentScroll;
     });
+    
+    // Initial check for quem-somos animations
+    if (quemSomosTitle && quemSomosText && quemSomosImage && quemSomosSection) {
+      const checkInitialVisibility = () => {
+        const sectionRect = quemSomosSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        if (sectionRect.top < viewportHeight * 0.8 && sectionRect.bottom > 0) {
+          quemSomosTitle.classList.add('visible');
+          quemSomosText.classList.add('visible');
+          quemSomosImage.classList.add('visible');
+        }
+      };
+      
+      // Check on load
+      checkInitialVisibility();
+      
+      // Also check after a short delay to ensure DOM is ready
+      setTimeout(checkInitialVisibility, 100);
+    }
   }
   
   // Mobile menu toggle
