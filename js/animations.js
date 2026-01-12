@@ -3,10 +3,10 @@
 
 // Animations JavaScript - Scroll reveal e animações
 
-// Intersection Observer para scroll reveal - Imperceptível
+// Intersection Observer para scroll reveal - Imperceptível e preciso
 const observerOptions = {
-  threshold: 0.12,
-  rootMargin: '0px 0px -80px 0px'
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver(function(entries) {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (heroContent) {
     setTimeout(() => {
       heroContent.classList.add('loaded');
-    }, 300);
+    }, 200);
   }
   
   // Animação de texto reveal
@@ -55,17 +55,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Parallax sutil para elementos com classe parallax
+  // Parallax sutil e imperceptível para elementos com classe parallax
   const parallaxElements = document.querySelectorAll('.parallax');
   
   if (parallaxElements.length > 0) {
+    let ticking = false;
+    
     window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      
-      parallaxElements.forEach(element => {
-        const rate = scrolled * 0.15;
-        element.style.transform = `translateY(${rate}px)`;
-      });
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          const scrolled = window.pageYOffset;
+          
+          parallaxElements.forEach(element => {
+            const rate = scrolled * 0.06;
+            element.style.transform = `translateY(${rate}px)`;
+          });
+          
+          ticking = false;
+        });
+        
+        ticking = true;
+      }
     });
   }
   
