@@ -172,6 +172,7 @@
   pointer-events: none;
 }
 
+
 .features-background {
   position: absolute;
   top: 0;
@@ -200,6 +201,31 @@
   z-index: 1;
   opacity: 0;
   animation: fadeInOverlay 1.5s cubic-bezier(0.2, 0, 0.2, 1) 0.5s forwards;
+  /* Máscara muito suave para não interferir na transição elaborada */
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.95) 70%,
+    rgba(0, 0, 0, 0.85) 80%,
+    rgba(0, 0, 0, 0.7) 87%,
+    rgba(0, 0, 0, 0.5) 92%,
+    rgba(0, 0, 0, 0.3) 95%,
+    rgba(0, 0, 0, 0.1) 97%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.95) 70%,
+    rgba(0, 0, 0, 0.85) 80%,
+    rgba(0, 0, 0, 0.7) 87%,
+    rgba(0, 0, 0, 0.5) 92%,
+    rgba(0, 0, 0, 0.3) 95%,
+    rgba(0, 0, 0, 0.1) 97%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 @keyframes fadeInOverlay {
@@ -1296,6 +1322,7 @@
 
 .convite-section .container {
   position: relative;
+  z-index: 1;
 }
 
 .convite-content {
