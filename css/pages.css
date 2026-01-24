@@ -484,7 +484,7 @@
 .about-hero__content {
   max-width: 900px;
   margin: 0 auto;
-  padding: 170px var(--spacing-md) 0; /* padding-top aumentado para baixar o título */
+  padding: 80px var(--spacing-md) 0; /* padding-top apenas para o conteúdo não ficar atrás do header */
   text-align: center;
   position: relative;
   z-index: 3;
@@ -505,6 +505,7 @@
   color: white;
   font-weight: 600;
   letter-spacing: 0.02em;
+  margin-top: 50px; /* Adiciona espaço acima do título para baixá-lo */
 }
 
 .about-hero .section__subtitle {
@@ -636,14 +637,35 @@
   padding: var(--spacing-lg) 0 var(--spacing-lg) 0;
   position: relative;
   overflow: hidden;
-  /* Background: azul marinho → preto */
+  /* Background: azul marinho → preto - degradê ULTRA SUAVE e imperceptível */
+  /* Múltiplos pontos intermediários para transição quase imperceptível */
   background: linear-gradient(
     to bottom,
     #001122 0%,
-    #000d1a 20%,
-    #000810 40%,
-    #000408 60%,
-    #000202 80%,
+    #001021 4%,
+    #000f20 8%,
+    #000e1f 12%,
+    #000d1e 16%,
+    #000c1d 20%,
+    #000b1c 24%,
+    #000a1b 28%,
+    #00091a 32%,
+    #000819 36%,
+    #000718 40%,
+    #000617 44%,
+    #000516 48%,
+    #000415 52%,
+    #000314 56%,
+    #000213 60%,
+    #000112 64%,
+    #000011 68%,
+    #000010 72%,
+    #00000f 76%,
+    #00000e 80%,
+    #00000d 84%,
+    #00000c 88%,
+    #00000b 92%,
+    #00000a 96%,
     #000000 100%
   );
   color: white;
@@ -654,41 +676,95 @@
   margin: 0;
   border: none;
   z-index: 2;
+  min-height: 100vh; /* Altura suficiente para o degradê "respirar" */
 }
 
-/* Degradê de transparência no topo para suavizar a transição */
+/* Overlay com blur para suavizar ainda mais a transição e eliminar banding */
 .about-content::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 300px; /* Altura do degradê */
+  bottom: 0;
+  /* Blur suave que ajuda a fundir as cores, eliminando linhas de transição */
   background: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(0, 17, 34, 0.3) 20%,
-    rgba(0, 17, 34, 0.6) 40%,
-    rgba(0, 17, 34, 0.85) 60%,
-    rgba(0, 17, 34, 0.95) 80%,
-    #001122 100% /* Cor do background da seção */
+    rgba(0, 30, 60, 0.08) 0%,
+    rgba(0, 25, 50, 0.06) 20%,
+    rgba(0, 20, 40, 0.04) 40%,
+    rgba(0, 15, 30, 0.02) 60%,
+    rgba(0, 10, 20, 0.01) 80%,
+    transparent 100%
   );
+  filter: blur(60px);
+  -webkit-filter: blur(60px);
   pointer-events: none;
   z-index: 1;
+  opacity: 0.6; /* Ajuste fino para suavidade */
 }
 
-/* Garantir que o final seja preto puro para unir com a próxima seção */
+/* Vinheta sutil para profundidade - extremamente leve e imperceptível */
 .about-content::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: #000000;
+  inset: 0;
+  /* Vinheta radial que escurece levemente as bordas, mantendo o centro limpo */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
   pointer-events: none;
-  z-index: 1;
+  z-index: 2; /* Acima do blur, abaixo do conteúdo */
 }
+
+/* Ajustes para mobile - degradê e vinheta ainda mais suaves */
+@media (max-width: 768px) {
+  /* Degradê ainda mais suave no mobile - menos contraste por etapa */
+  .about-content {
+    background: linear-gradient(
+      to bottom,
+      #001122 0%,
+      #001021 6%,
+      #000f20 12%,
+      #000e1f 18%,
+      #000d1e 24%,
+      #000c1d 30%,
+      #000b1c 36%,
+      #000a1b 42%,
+      #00091a 48%,
+      #000819 54%,
+      #000718 60%,
+      #000617 66%,
+      #000516 72%,
+      #000415 78%,
+      #000314 84%,
+      #000213 90%,
+      #000112 95%,
+      #000000 100%
+    );
+  }
+  
+  /* Vinheta quase inexistente no mobile - foco em continuidade */
+  .about-content::after {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 55%,
+      rgba(0, 0, 0, 0.06) 100%
+    );
+  }
+  
+  /* Blur mais suave no mobile */
+  .about-content::before {
+    opacity: 0.4;
+    filter: blur(40px);
+    -webkit-filter: blur(40px);
+  }
+}
+
+/* Garantir que o final seja preto puro para unir com a próxima seção */
+/* Removido - ::after agora é usado para vinheta sutil */
 
 
 .about-content .section__title {
