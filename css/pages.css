@@ -437,16 +437,26 @@
 
 /* ===== QUEM SOMOS PAGE ===== */
 .about-hero {
-  padding: calc(80px + var(--spacing-xl)) 0 calc(var(--spacing-xl) + 50px) 0;
-  background: linear-gradient(to bottom, #001122 0%, #001122 100%);
+  /* padding: calc(80px + var(--spacing-xl)) 0 calc(var(--spacing-xl) + 50px) 0; */ /* Comentado para remover gap - imagens começam do topo */
+  /* padding-top: 80px; */ /* Comentado - estava causando gap */
+  padding: 0;
+  background: #001122;
   color: white;
   position: relative;
   overflow: hidden;
   margin-bottom: 0;
   z-index: 1;
+  min-height: 100vh;
+}
+
+/* Container sem padding para permitir imagens nas bordas */
+.about-hero .container {
+  padding: 0;
+  max-width: 100%;
 }
 
 /* Overlay removido - seções uniformizadas */
+.about-hero::before,
 .about-hero::after {
   display: none;
 }
@@ -459,27 +469,168 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Wrapper para layout com imagens laterais na seção Quem Somos */
+.about-hero__wrapper {
+  position: relative;
+  min-height: 100vh; /* Altura total da viewport */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding removido completamente para eliminar gap - imagens começam do topo */
+  padding: 0;
+  width: 100%;
+}
+
 .about-hero__content {
   max-width: 900px;
   margin: 0 auto;
+  padding: 80px var(--spacing-md) 0; /* padding-top apenas para o conteúdo não ficar atrás do header */
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  /* Estado inicial - título não aparece */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* Título revelado no scroll */
+.about-hero__content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-hero .section__title {
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.about-hero .section__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .about-hero__content {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+/* Imagens fixas de fundo - esmaecidas e com degradê central */
 .about-hero__image {
-  width: 100%;
-  max-width: 600px;
-  margin: var(--spacing-lg) auto;
-  border-radius: var(--radius-lg);
+  position: fixed;
+  width: 40%;
+  max-width: 500px;
+  height: 100vh;
+  top: 0;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  opacity: 0.25; /* Esmaecidas - baixa opacidade */
+  filter: grayscale(30%) brightness(0.6);
+  z-index: 1;
+  pointer-events: none; /* Não interferir com interações */
+  margin: 0;
+  padding: 0;
+  /* SEM transform, SEM parallax - totalmente fixas */
+}
+
+.about-hero__image--left {
+  left: 5%;
+  /* Degradê que se dissolve no centro (direita) */
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 30%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 30%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.about-hero__image--right {
+  right: 5%;
+  /* Degradê que se dissolve no centro (esquerda) */
+  mask-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 30%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 30%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0) 70%
+  );
 }
 
 .about-hero__image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
+}
+
+/* Overlay adicional para suavizar ainda mais a dissolução no centro */
+.about-hero__image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.about-hero__image--left::after {
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 30%,
+    rgba(0, 17, 34, 0.2) 50%,
+    rgba(0, 17, 34, 0.5) 70%,
+    rgba(0, 17, 34, 0.8) 100%
+  );
+}
+
+.about-hero__image--right::after {
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to left,
+    transparent 0%,
+    transparent 30%,
+    rgba(0, 17, 34, 0.2) 50%,
+    rgba(0, 17, 34, 0.5) 70%,
+    rgba(0, 17, 34, 0.8) 100%
+  );
+}
+
+/* Responsivo: esconder imagens em telas menores */
+@media (max-width: 1024px) {
+  .about-hero__image {
+    display: none;
+  }
+  
+  .about-hero__wrapper {
+    min-height: 80vh;
+    padding: 0;
+  }
+  
+  .about-hero__content {
+    padding: 80px var(--spacing-md) var(--spacing-lg);
+  }
 }
 
 .about-content {
@@ -541,6 +692,7 @@
   position: relative;
   z-index: 3;
 }
+
 
 @keyframes fadeInUp {
   from {

@@ -498,9 +498,46 @@ function initMVVScrollAnimation() {
   }
 }
 
+// ===== REVELAÇÃO DO TÍTULO NO SCROLL - SEÇÃO QUEM SOMOS =====
+function initAboutHeroReveal() {
+  const aboutHeroContent = document.querySelector('.about-hero__content');
+  const aboutHero = document.querySelector('.about-hero');
+  
+  if (!aboutHeroContent || !aboutHero) return;
+  
+  // IntersectionObserver para revelar o título quando a seção entra na viewport
+  const observerOptions = {
+    threshold: 0.2, // Revelar quando 20% da seção estiver visível
+    rootMargin: '0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Adicionar classe 'visible' para revelar o título
+        aboutHeroContent.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+  
+  // Observar a seção about-hero
+  observer.observe(aboutHero);
+  
+  // Verificar se já está visível no carregamento
+  const rect = aboutHero.getBoundingClientRect();
+  const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+  if (isVisible) {
+    // Pequeno delay para suavizar a entrada
+    setTimeout(() => {
+      aboutHeroContent.classList.add('visible');
+    }, 300);
+  }
+}
+
 // Inicializar quando DOM estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
   initMVVScrollAnimation();
+  initAboutHeroReveal(); // Revelação do título no scroll (sem parallax)
 });
 
 // Export for use in other scripts
