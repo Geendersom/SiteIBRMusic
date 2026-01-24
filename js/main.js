@@ -234,6 +234,143 @@ function isInViewport(element, offset = 0) {
   );
 }
 
+/**
+ * MVV Navigation - Navegação simples por setas
+ * 
+ * Comportamento:
+ * 1. Scroll totalmente normal (sem interceptação)
+ * 2. Título sticky no topo (via CSS)
+ * 3. Apenas UM card visível por vez
+ * 4. Navegação exclusiva por setas
+ */
+function initMVVScrollAnimation() {
+  const cards = document.querySelectorAll('.mvv-preview__card');
+  const prevButton = document.querySelector('.mvv-controls--prev');
+  const nextButton = document.querySelector('.mvv-controls--next');
+  
+  if (!cards || cards.length === 0) return;
+  
+  const cardsArray = Array.from(cards);
+  let currentIndex = 0;
+  let isTransitioning = false;
+  
+  // Configurações
+  const TRANSITION_DURATION = 500; // ms
+  
+  // ===== INICIALIZAÇÃO =====
+  
+  // Mostrar primeiro card como ativo
+  cardsArray.forEach((card, index) => {
+    card.classList.remove('active', 'exiting', 'entering', 'exiting-next', 'exiting-prev', 'entering-next', 'entering-prev');
+    if (index === 0) {
+      card.classList.add('active');
+    }
+  });
+  
+  // ===== NAVEGAÇÃO DE CARDS =====
+  
+  /**
+   * Ativa um card específico com transição suave
+   * @param {number} index - Índice do card a ativar
+   */
+  function showCard(index) {
+    if (index < 0 || index >= cardsArray.length || isTransitioning) return;
+    if (index === currentIndex) return; // Já está ativo
+    
+    isTransitioning = true;
+    const currentCard = cardsArray[currentIndex];
+    const targetCard = cardsArray[index];
+    
+    // Determinar direção baseada no índice
+    const direction = index > currentIndex ? 'next' : 'prev';
+    
+    // Marcar card atual como saindo
+    currentCard.classList.remove('active');
+    currentCard.classList.add('exiting', `exiting-${direction}`);
+    
+    // Marcar próximo card como entrando
+    targetCard.classList.remove('exiting', 'entering', 'exiting-next', 'exiting-prev', 'entering-next', 'entering-prev');
+    targetCard.classList.add('entering', `entering-${direction}`);
+    
+    // Forçar reflow para garantir que as classes sejam aplicadas
+    void targetCard.offsetHeight;
+    
+    // Após metade da transição, ativar próximo card
+    setTimeout(() => {
+      currentCard.classList.remove('exiting', 'exiting-next', 'exiting-prev');
+      targetCard.classList.remove('entering', 'entering-next', 'entering-prev');
+      targetCard.classList.add('active');
+      currentIndex = index;
+      
+      // Permitir próxima transição após animação completa
+      setTimeout(() => {
+        isTransitioning = false;
+      }, TRANSITION_DURATION / 2);
+    }, TRANSITION_DURATION / 2);
+  }
+  
+  /**
+   * Próximo card
+   */
+  function nextCard() {
+    if (currentIndex < cardsArray.length - 1 && !isTransitioning) {
+      showCard(currentIndex + 1);
+    }
+  }
+  
+  /**
+   * Card anterior
+   */
+  function prevCard() {
+    if (currentIndex > 0 && !isTransitioning) {
+      showCard(currentIndex - 1);
+    }
+  }
+  
+  // ===== EVENT LISTENERS =====
+  
+  // Event listeners para setas
+  if (nextButton) {
+    nextButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      nextCard();
+    });
+  }
+  
+  if (prevButton) {
+    prevButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      prevCard();
+    });
+  }
+  
+  // Navegação por teclado (opcional, apenas quando seção está visível)
+  document.addEventListener('keydown', function(e) {
+    const mvvSection = document.querySelector('.section--dark:has(.mvv-preview)');
+    if (!mvvSection) return;
+    
+    const sectionRect = mvvSection.getBoundingClientRect();
+    const isSectionVisible = sectionRect.top < window.innerHeight && sectionRect.bottom > 0;
+    
+    if (isSectionVisible && !isTransitioning) {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevCard();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextCard();
+      }
+    }
+  });
+}
+
+// Inicializar quando DOM estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+  initMVVScrollAnimation();
+});
+
 // Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { isInViewport };

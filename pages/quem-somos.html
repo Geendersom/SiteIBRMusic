@@ -156,39 +156,46 @@
   <!-- Mission Vision Values Preview Section -->
   <section class="section section--dark">
     <div class="container">
-      <h2 class="section__title reveal">Missão, Visão e Valores</h2>
-      <p class="section__subtitle reveal reveal-delay-1">
-        Os pilares que fundamentam nosso ministério
-      </p>
+      <div class="mvv-header">
+        <h2 class="section__title reveal">Missão, Visão e Valores</h2>
+        <p class="section__subtitle reveal reveal-delay-1">
+          Os pilares que fundamentam nosso ministério
+        </p>
+      </div>
       
       <div class="mvv-preview reveal reveal-delay-2">
-        <div class="mvv-preview__grid">
-          <div class="mvv-preview__card">
-            <div class="mvv-preview__icon">🎯</div>
-            <h3 class="mvv-preview__title">Missão</h3>
-            <p class="mvv-preview__text">
-              Servir com excelência. Desenvolver vocações. 
-              Formar servos comprometidos.
-            </p>
+        <div class="mvv-preview__slider">
+          <button class="mvv-controls mvv-controls--prev" aria-label="Card anterior">
+            ‹
+          </button>
+          
+          <div class="mvv-preview__container">
+            <div class="mvv-preview__card" data-card="visao">
+              <h3 class="mvv-preview__title">Visão</h3>
+              <p class="mvv-preview__text">
+                Fluir em adoração através da música com o objetivo de gerar uma adoração madura que seja movida pelo Espírito.
+              </p>
+              <p class="mvv-preview__verse">Jo – 4:24</p>
+            </div>
+            
+            <div class="mvv-preview__card" data-card="missao">
+              <h3 class="mvv-preview__title">Missão</h3>
+              <p class="mvv-preview__text">
+                Servir a congregação em amor, com entendimento, criando um ambiente propício para a experiência da presença de Deus, levando as pessoas a uma conexão mais profunda, colocando Cristo no centro de nossas ações e edificando a comunidade em fé.
+              </p>
+            </div>
+            
+            <div class="mvv-preview__card" data-card="valores">
+              <h3 class="mvv-preview__title">Valores</h3>
+              <p class="mvv-preview__text">
+                Excelência, Humildade, Integridade, Unidade, Serviço, Paixão por adoração, obediência.
+              </p>
+            </div>
           </div>
           
-          <div class="mvv-preview__card">
-            <div class="mvv-preview__icon">👁️</div>
-            <h3 class="mvv-preview__title">Visão</h3>
-            <p class="mvv-preview__text">
-              Ser referência em ministério de louvor. 
-              Excelência. Unidade. Impacto transformador.
-            </p>
-          </div>
-          
-          <div class="mvv-preview__card">
-            <div class="mvv-preview__icon">❤️</div>
-            <h3 class="mvv-preview__title">Valores</h3>
-            <p class="mvv-preview__text">
-              Excelência. Reverência. Unidade. 
-              Integridade. Compromisso.
-            </p>
-          </div>
+          <button class="mvv-controls mvv-controls--next" aria-label="Próximo card">
+            ›
+          </button>
         </div>
       </div>
     </div>
