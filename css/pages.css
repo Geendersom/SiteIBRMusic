@@ -257,12 +257,64 @@
 }
 
 .section--dark {
+  /* Background: preto → azul marinho → preto - degradê ULTRA SUAVE e imperceptível */
+  /* Continua o padrão da seção anterior: preto > azul > preto */
   background: linear-gradient(
     to bottom,
+    /* Começa em preto (continuação da seção anterior) */
     #000000 0%,
-    #000810 30%,
-    #000d1a 60%,
-    #000d1a 100%
+    #00000a 2%,
+    #00000b 4%,
+    #00000c 6%,
+    #00000d 8%,
+    #00000e 10%,
+    #00000f 12%,
+    #000010 14%,
+    #000011 16%,
+    #000112 18%,
+    #000213 20%,
+    #000314 22%,
+    #000415 24%,
+    #000516 26%,
+    #000617 28%,
+    #000718 30%,
+    #000819 32%,
+    #00091a 34%,
+    #000a1b 36%,
+    #000b1c 38%,
+    #000c1d 40%,
+    #000d1e 42%,
+    #000e1f 44%,
+    #000f20 46%,
+    #001021 48%,
+    /* Pico do azul marinho no meio */
+    #001122 50%,
+    /* Volta para preto */
+    #001021 52%,
+    #000f20 54%,
+    #000e1f 56%,
+    #000d1e 58%,
+    #000c1d 60%,
+    #000b1c 62%,
+    #000a1b 64%,
+    #00091a 66%,
+    #000819 68%,
+    #000718 70%,
+    #000617 72%,
+    #000516 74%,
+    #000415 76%,
+    #000314 78%,
+    #000213 80%,
+    #000112 82%,
+    #000011 84%,
+    #000010 86%,
+    #00000f 88%,
+    #00000e 90%,
+    #00000d 92%,
+    #00000c 94%,
+    #00000b 96%,
+    #00000a 98%,
+    #000000 100%
   );
   color: white;
   position: relative;
@@ -273,19 +325,48 @@
   margin-top: 0;
   /* Transição suave ao aparecer */
   animation: fadeInSection 2.5s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+  min-height: 100vh; /* Altura suficiente para o degradê "respirar" */
 }
 
-/* Garantir que o final da seção seja preto puro para unir com o footer */
+/* Overlay com blur para suavizar ainda mais a transição e eliminar banding */
+/* Aplicado apenas quando não há mvv-preview (que tem seu próprio ::before) */
+.section--dark:not(:has(.mvv-preview))::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Blur suave que ajuda a fundir as cores, eliminando linhas de transição */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 30, 60, 0.08) 0%,
+    rgba(0, 25, 50, 0.06) 20%,
+    rgba(0, 20, 40, 0.04) 40%,
+    rgba(0, 15, 30, 0.02) 60%,
+    rgba(0, 10, 20, 0.01) 80%,
+    transparent 100%
+  );
+  filter: blur(60px);
+  -webkit-filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6; /* Ajuste fino para suavidade */
+}
+
+/* Vinheta sutil para profundidade - extremamente leve e imperceptível */
 .section--dark::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: #000000;
-  z-index: 0;
+  inset: 0;
+  /* Vinheta radial que escurece levemente as bordas, mantendo o centro limpo */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
   pointer-events: none;
+  z-index: 2; /* Acima do blur, abaixo do conteúdo */
 }
 
 .section--dark .container {
@@ -757,6 +838,65 @@
   
   /* Blur mais suave no mobile */
   .about-content::before {
+    opacity: 0.4;
+    filter: blur(40px);
+    -webkit-filter: blur(40px);
+  }
+  
+  /* Mesmos ajustes para section--dark no mobile - preto > azul > preto */
+  .section--dark {
+    background: linear-gradient(
+      to bottom,
+      /* Começa em preto */
+      #000000 0%,
+      #00000a 3%,
+      #00000b 6%,
+      #00000c 9%,
+      #00000d 12%,
+      #00000e 15%,
+      #00000f 18%,
+      #000010 21%,
+      #000011 24%,
+      #000112 27%,
+      #000213 30%,
+      #000314 33%,
+      #000415 36%,
+      #000516 39%,
+      #000617 42%,
+      #000718 45%,
+      #000819 48%,
+      #00091a 51%,
+      /* Pico do azul marinho no meio */
+      #001122 54%,
+      /* Volta para preto */
+      #00091a 57%,
+      #000819 60%,
+      #000718 63%,
+      #000617 66%,
+      #000516 69%,
+      #000415 72%,
+      #000314 75%,
+      #000213 78%,
+      #000112 81%,
+      #000011 84%,
+      #000010 87%,
+      #00000f 90%,
+      #00000e 93%,
+      #00000d 96%,
+      #00000c 99%,
+      #000000 100%
+    );
+  }
+  
+  .section--dark::after {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 55%,
+      rgba(0, 0, 0, 0.06) 100%
+    );
+  }
+  
+  .section--dark::before {
     opacity: 0.4;
     filter: blur(40px);
     -webkit-filter: blur(40px);
