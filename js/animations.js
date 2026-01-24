@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Observer específico para a seção "Sobre o IBR Music" - texto aparece mais tarde
+  // Aumentado rootMargin negativo para retardar entrada e criar ritmo de progressão
   const aboutContentObserver = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -42,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -400px 0px' // Requer mais scroll para aparecer
+    threshold: 0.15, // Aumentado ligeiramente para mais precisão
+    rootMargin: '0px 0px -500px 0px' // Aumentado de -400px para -500px - retarda entrada mantendo fluidez
   });
   
   // Aplicar observer específico aos elementos da seção about-content

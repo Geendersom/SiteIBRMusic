@@ -369,12 +369,32 @@
 }
 
 /* Footer */
+/* ===== FOOTER PADRONIZADO - BLOCO FINAL ESTÁVEL ===== */
 .footer {
-  background: var(--color-bg-dark);
+  /* Fundo preto sólido - 100% opaco, sem transparência */
+  background-color: #000000 !important;
+  background: #000000 !important;
   color: white;
-  padding: calc(var(--spacing-xl) / 2) 0 calc(var(--spacing-lg) / 2);
+  /* Altura reduzida em ~70% - compacto e silencioso */
+  padding: 1.5rem 1rem; /* Reduzido de ~7rem/5rem para 1.5rem/1rem */
   margin-top: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  /* Resetar todas as heranças indesejadas */
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  /* Garantir que não herde gradientes ou overlays */
+  position: relative;
+  z-index: 10;
+}
+
+/* Resetar heranças em elementos filhos */
+.footer * {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
 }
 
 .footer__container {
@@ -384,7 +404,7 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
-  gap: calc(var(--spacing-lg) / 2);
+  gap: 0.75rem; /* Reduzido de calc(var(--spacing-lg) / 2) para 0.75rem */
 }
 
 .footer__top {
@@ -420,7 +440,7 @@
 }
 
 .footer__text {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75); /* Ajustado para melhor contraste */
   font-size: 0.875rem;
   letter-spacing: 0.01em;
   line-height: 1.5;
@@ -444,13 +464,15 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7); /* Opacidade padrão ajustada */
   transition: all var(--transition-base);
   border-radius: var(--radius-full);
+  opacity: 0.7; /* Opacidade padrão para ícones */
 }
 
 .footer__social-link:hover {
   color: rgba(255, 255, 255, 1);
+  opacity: 1; /* Opacidade total no hover */
   transform: translateY(-2px);
 }
 
@@ -459,12 +481,18 @@
   height: 20px;
 }
 
+/* Responsividade - Footer ainda mais compacto no mobile */
 @media (max-width: 768px) {
+  .footer {
+    padding: 1rem 0.75rem; /* Ainda mais compacto no mobile */
+  }
+  
   .footer__container {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: var(--spacing-md);
+    gap: 0.5rem; /* Reduzido de var(--spacing-md) para 0.5rem */
+    padding: 0 var(--spacing-sm);
   }
 
   .footer__left {

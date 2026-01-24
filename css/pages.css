@@ -544,6 +544,7 @@
 
 .about-hero .section__title {
   color: white;
+  margin-top: 8vh; /* Adiciona respiro vertical - título mais baixo e centralizado emocionalmente */
 }
 
 .about-hero .section__subtitle {
