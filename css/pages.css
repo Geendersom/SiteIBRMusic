@@ -484,7 +484,7 @@
 .about-hero__content {
   max-width: 900px;
   margin: 0 auto;
-  padding: 80px var(--spacing-md) 0; /* padding-top apenas para o conteúdo não ficar atrás do header */
+  padding: 170px var(--spacing-md) 0; /* padding-top aumentado para baixar o título */
   text-align: center;
   position: relative;
   z-index: 3;
@@ -521,8 +521,7 @@
 /* Imagens fixas de fundo - esmaecidas e com degradê central */
 .about-hero__image {
   position: fixed;
-  width: 40%;
-  max-width: 500px;
+  width: 50vw; /* 50% da largura da viewport - sempre toca as bordas */
   height: 100vh;
   top: 0;
   overflow: hidden;
@@ -536,7 +535,7 @@
 }
 
 .about-hero__image--left {
-  left: 5%;
+  left: 0; /* Sempre toca a borda esquerda */
   /* Degradê que se dissolve no centro (direita) */
   mask-image: linear-gradient(
     to right,
@@ -555,7 +554,7 @@
 }
 
 .about-hero__image--right {
-  right: 5%;
+  right: 0; /* Sempre toca a borda direita */
   /* Degradê que se dissolve no centro (esquerda) */
   mask-image: linear-gradient(
     to left,
@@ -657,9 +656,25 @@
   z-index: 2;
 }
 
-/* Efeito de luz removido */
+/* Degradê de transparência no topo para suavizar a transição */
 .about-content::before {
-  display: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px; /* Altura do degradê */
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 17, 34, 0.3) 20%,
+    rgba(0, 17, 34, 0.6) 40%,
+    rgba(0, 17, 34, 0.85) 60%,
+    rgba(0, 17, 34, 0.95) 80%,
+    #001122 100% /* Cor do background da seção */
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Garantir que o final seja preto puro para unir com a próxima seção */
