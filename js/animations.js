@@ -32,6 +32,26 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(element);
   });
   
+  // Observer específico para a seção "Sobre o IBR Music" - texto aparece mais tarde
+  const aboutContentObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -400px 0px' // Requer mais scroll para aparecer
+  });
+  
+  // Aplicar observer específico aos elementos da seção about-content
+  const aboutContentElements = document.querySelectorAll('.about-content .reveal');
+  aboutContentElements.forEach(element => {
+    aboutContentObserver.observe(element);
+  });
+  
   // Animação especial para hero - Contemplativa e cinematográfica
   const heroContent = document.querySelector('.hero__content');
   if (heroContent) {

@@ -91,7 +91,7 @@
   font-weight: 400;
   line-height: 1.08;
   margin-bottom: 2.25rem;
-  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.7), 0 0 60px rgba(26, 95, 179, 0.12);
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(26, 95, 179, 0.06);
   letter-spacing: -0.045em;
   opacity: 0;
   transform: translateY(6px);
@@ -257,7 +257,13 @@
 }
 
 .section--dark {
-  background: radial-gradient(ellipse at center, #0a1520 0%, #050608 50%, #000000 100%);
+  background: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #000810 30%,
+    #000d1a 60%,
+    #000d1a 100%
+  );
   color: white;
   position: relative;
   overflow: hidden;
@@ -269,10 +275,23 @@
   animation: fadeInSection 2.5s cubic-bezier(0.2, 0, 0.2, 1) forwards;
 }
 
+/* Garantir que o final da seção seja preto puro para unir com o footer */
+.section--dark::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: #000000;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .section--dark .container {
   position: relative;
   z-index: 2;
-  padding-top: var(--spacing-md);
+  padding-top: 0;
 }
 
 
@@ -418,43 +437,18 @@
 
 /* ===== QUEM SOMOS PAGE ===== */
 .about-hero {
-  padding: calc(80px + var(--spacing-xl)) 0 calc(var(--spacing-xl) + 100px);
-  background: linear-gradient(135deg, #0a0a0a 0%, #001122 100%);
+  padding: calc(80px + var(--spacing-xl)) 0 calc(var(--spacing-xl) + 50px) 0;
+  background: linear-gradient(to bottom, #001122 0%, #001122 100%);
   color: white;
   position: relative;
   overflow: hidden;
+  margin-bottom: 0;
+  z-index: 1;
 }
 
-/* Fade-out suave no final da about-hero - transição muito uniforme e imperceptível */
+/* Overlay removido - seções uniformizadas */
 .about-hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 20%,
-    rgba(10, 10, 10, 0.05) 35%,
-    rgba(10, 10, 10, 0.12) 45%,
-    rgba(10, 10, 10, 0.2) 55%,
-    rgba(10, 10, 10, 0.3) 63%,
-    rgba(10, 10, 10, 0.4) 70%,
-    rgba(10, 10, 10, 0.5) 76%,
-    rgba(10, 10, 10, 0.6) 81%,
-    rgba(10, 10, 10, 0.7) 85%,
-    rgba(10, 10, 10, 0.78) 88%,
-    rgba(10, 10, 10, 0.85) 91%,
-    rgba(10, 10, 10, 0.9) 93%,
-    rgba(10, 10, 10, 0.94) 95%,
-    rgba(10, 10, 10, 0.97) 97%,
-    rgba(10, 10, 10, 0.99) 98.5%,
-    rgba(10, 10, 10, 1) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
+  display: none;
 }
 
 .about-hero .section__title {
@@ -489,24 +483,63 @@
 }
 
 .about-content {
-  padding: var(--spacing-lg) 0 var(--spacing-md) 0;
+  padding: var(--spacing-lg) 0 var(--spacing-lg) 0;
   position: relative;
   overflow: hidden;
-  /* Mesmo background da section--dark para parecer uma única seção */
-  background: radial-gradient(ellipse at center, #0a1520 0%, #050608 50%, #000000 100%);
+  /* Background: azul marinho → preto */
+  background: linear-gradient(
+    to bottom,
+    #001122 0%,
+    #000d1a 20%,
+    #000810 40%,
+    #000408 60%,
+    #000202 80%,
+    #000000 100%
+  );
   color: white;
   /* Fade-in suave no início */
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 1s cubic-bezier(0.2, 0, 0.2, 1) 0.2s forwards;
+  margin: 0;
+  border: none;
+  z-index: 2;
 }
+
+/* Efeito de luz removido */
+.about-content::before {
+  display: none;
+}
+
+/* Garantir que o final seja preto puro para unir com a próxima seção */
+.about-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: #000000;
+  pointer-events: none;
+  z-index: 1;
+}
+
 
 .about-content .section__title {
   color: white;
+  text-align: center;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(26, 95, 179, 0.02);
 }
 
 .about-content .section__subtitle {
   color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.about-content .container {
+  text-align: center;
+  position: relative;
+  z-index: 3;
 }
 
 @keyframes fadeInUp {
@@ -526,6 +559,7 @@
   font-size: 1.125rem;
   line-height: 1.65;
   letter-spacing: -0.01em;
+  text-align: center;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 300;
   font-feature-settings: "kern" 1;
@@ -533,7 +567,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .about-content__text p {
@@ -700,6 +735,29 @@
   position: relative;
 }
 
+/* Overlay de iluminação azul para a seção MVV - mantém efeito de luz */
+.section--dark:has(.mvv-preview)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1400px;
+  height: 70%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 30, 60, 0.3) 0%,
+    rgba(0, 30, 60, 0.15) 30%,
+    rgba(0, 30, 60, 0.08) 50%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* Header - Título sticky no topo */
 .mvv-header {
   position: sticky;
@@ -718,6 +776,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 /* Slider container */
@@ -795,6 +854,35 @@
   z-index: 2;
   border-color: rgba(255, 255, 255, 0.15);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Conteúdo do card - escondido inicialmente */
+.mvv-preview__card .mvv-preview__title,
+.mvv-preview__card .mvv-preview__text,
+.mvv-preview__card .mvv-preview__verse {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Quando a seção toca o topo, mostrar conteúdo */
+.mvv-section--at-top .mvv-preview__card.active .mvv-preview__title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.mvv-section--at-top .mvv-preview__card.active .mvv-preview__text {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.mvv-section--at-top .mvv-preview__card.active .mvv-preview__verse {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
 }
 
 /* Card saindo */

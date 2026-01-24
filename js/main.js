@@ -242,8 +242,10 @@ function isInViewport(element, offset = 0) {
  * 2. Título sticky no topo (via CSS)
  * 3. Apenas UM card visível por vez
  * 4. Navegação exclusiva por setas
+ * 5. Conteúdo do card aparece apenas quando seção toca o topo
  */
 function initMVVScrollAnimation() {
+  const mvvSection = document.querySelector('.section--dark:has(.mvv-preview)');
   const cards = document.querySelectorAll('.mvv-preview__card');
   const prevButton = document.querySelector('.mvv-controls--prev');
   const nextButton = document.querySelector('.mvv-controls--next');
@@ -284,6 +286,14 @@ function initMVVScrollAnimation() {
     // Determinar direção baseada no índice
     const direction = index > currentIndex ? 'next' : 'prev';
     
+    // Resetar conteúdo do card atual (esconder)
+    const currentTitle = currentCard.querySelector('.mvv-preview__title');
+    const currentText = currentCard.querySelector('.mvv-preview__text');
+    const currentVerse = currentCard.querySelector('.mvv-preview__verse');
+    if (currentTitle) currentTitle.style.opacity = '0';
+    if (currentText) currentText.style.opacity = '0';
+    if (currentVerse) currentVerse.style.opacity = '0';
+    
     // Marcar card atual como saindo
     currentCard.classList.remove('active');
     currentCard.classList.add('exiting', `exiting-${direction}`);
@@ -301,6 +311,16 @@ function initMVVScrollAnimation() {
       targetCard.classList.remove('entering', 'entering-next', 'entering-prev');
       targetCard.classList.add('active');
       currentIndex = index;
+      
+      // Se a seção está no topo, mostrar conteúdo do novo card
+      if (mvvSection && mvvSection.classList.contains('mvv-section--at-top')) {
+        const targetTitle = targetCard.querySelector('.mvv-preview__title');
+        const targetText = targetCard.querySelector('.mvv-preview__text');
+        const targetVerse = targetCard.querySelector('.mvv-preview__verse');
+        if (targetTitle) targetTitle.style.opacity = '1';
+        if (targetText) targetText.style.opacity = '1';
+        if (targetVerse) targetVerse.style.opacity = '1';
+      }
       
       // Permitir próxima transição após animação completa
       setTimeout(() => {
@@ -348,7 +368,6 @@ function initMVVScrollAnimation() {
   
   // Navegação por teclado (opcional, apenas quando seção está visível)
   document.addEventListener('keydown', function(e) {
-    const mvvSection = document.querySelector('.section--dark:has(.mvv-preview)');
     if (!mvvSection) return;
     
     const sectionRect = mvvSection.getBoundingClientRect();
@@ -364,6 +383,65 @@ function initMVVScrollAnimation() {
       }
     }
   });
+  
+  // ===== DETECÇÃO DE TOPO DA SEÇÃO =====
+  
+  /**
+   * Verifica se a seção tocou o topo da página
+   */
+  function checkSectionAtTop() {
+    if (!mvvSection) return;
+    
+    const sectionRect = mvvSection.getBoundingClientRect();
+    const headerHeight = 80; // Altura do header
+    
+    // Quando a seção toca o topo (considerando header)
+    if (sectionRect.top <= headerHeight + 50) {
+      if (!mvvSection.classList.contains('mvv-section--at-top')) {
+        mvvSection.classList.add('mvv-section--at-top');
+        
+        // Mostrar conteúdo do card ativo quando seção chega no topo
+        const activeCard = cardsArray[currentIndex];
+        if (activeCard && activeCard.classList.contains('active')) {
+          const title = activeCard.querySelector('.mvv-preview__title');
+          const text = activeCard.querySelector('.mvv-preview__text');
+          const verse = activeCard.querySelector('.mvv-preview__verse');
+          if (title) title.style.opacity = '1';
+          if (text) text.style.opacity = '1';
+          if (verse) verse.style.opacity = '1';
+        }
+      }
+    } else {
+      mvvSection.classList.remove('mvv-section--at-top');
+      
+      // Esconder conteúdo quando seção sai do topo
+      cardsArray.forEach(card => {
+        const title = card.querySelector('.mvv-preview__title');
+        const text = card.querySelector('.mvv-preview__text');
+        const verse = card.querySelector('.mvv-preview__verse');
+        if (title) title.style.opacity = '0';
+        if (text) text.style.opacity = '0';
+        if (verse) verse.style.opacity = '0';
+      });
+    }
+  }
+  
+  // Verificar no scroll
+  let ticking = false;
+  function handleScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        checkSectionAtTop();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Verificar inicialmente
+  checkSectionAtTop();
 }
 
 // Inicializar quando DOM estiver pronto

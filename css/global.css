@@ -374,7 +374,7 @@
   color: white;
   padding: calc(var(--spacing-xl) / 2) 0 calc(var(--spacing-lg) / 2);
   margin-top: 0;
-  border-top: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer__container {
