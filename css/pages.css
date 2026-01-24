@@ -263,7 +263,7 @@
   overflow: hidden;
   padding: 0;
   padding-top: 0;
-  padding-bottom: var(--spacing-xxl);
+  padding-bottom: var(--spacing-lg);
   margin-top: 0;
   /* Transição suave ao aparecer */
   animation: fadeInSection 2.5s cubic-bezier(0.2, 0, 0.2, 1) forwards;
@@ -272,7 +272,7 @@
 .section--dark .container {
   position: relative;
   z-index: 2;
-  padding-top: var(--spacing-xxl);
+  padding-top: var(--spacing-md);
 }
 
 
@@ -489,7 +489,7 @@
 }
 
 .about-content {
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-lg) 0 var(--spacing-md) 0;
   position: relative;
   overflow: hidden;
   /* Mesmo background da section--dark para parecer uma única seção */
@@ -705,19 +705,16 @@
   position: sticky;
   top: 80px;
   z-index: 100;
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-md) 0;
   text-align: center;
-  background: radial-gradient(ellipse at center, rgba(10, 21, 32, 0.98) 0%, rgba(5, 6, 8, 0.99) 50%, rgba(0, 0, 0, 1) 100%);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
 }
 
 /* Container de preview */
 .mvv-preview {
-  padding: var(--spacing-xxl) 0;
+  padding: var(--spacing-lg) 0;
   position: relative;
-  min-height: 600px;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
