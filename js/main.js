@@ -257,7 +257,7 @@ function initMVVScrollAnimation() {
   let isTransitioning = false;
   
   // Configurações
-  const TRANSITION_DURATION = 500; // ms
+  const TRANSITION_DURATION = 800; // ms - aumentado para transição mais suave
   
   // ===== INICIALIZAÇÃO =====
   
@@ -289,9 +289,11 @@ function initMVVScrollAnimation() {
     // Resetar conteúdo do card atual (esconder)
     const currentTitle = currentCard.querySelector('.mvv-preview__title');
     const currentText = currentCard.querySelector('.mvv-preview__text');
+    const currentList = currentCard.querySelector('.mvv-preview__list');
     const currentVerse = currentCard.querySelector('.mvv-preview__verse');
     if (currentTitle) currentTitle.style.opacity = '0';
     if (currentText) currentText.style.opacity = '0';
+    if (currentList) currentList.style.opacity = '0';
     if (currentVerse) currentVerse.style.opacity = '0';
     
     // Marcar card atual como saindo
@@ -316,9 +318,11 @@ function initMVVScrollAnimation() {
       if (mvvSection && mvvSection.classList.contains('mvv-section--at-top')) {
         const targetTitle = targetCard.querySelector('.mvv-preview__title');
         const targetText = targetCard.querySelector('.mvv-preview__text');
+        const targetList = targetCard.querySelector('.mvv-preview__list');
         const targetVerse = targetCard.querySelector('.mvv-preview__verse');
         if (targetTitle) targetTitle.style.opacity = '1';
         if (targetText) targetText.style.opacity = '1';
+        if (targetList) targetList.style.opacity = '1';
         if (targetVerse) targetVerse.style.opacity = '1';
       }
       
@@ -405,9 +409,11 @@ function initMVVScrollAnimation() {
         if (activeCard && activeCard.classList.contains('active')) {
           const title = activeCard.querySelector('.mvv-preview__title');
           const text = activeCard.querySelector('.mvv-preview__text');
+          const list = activeCard.querySelector('.mvv-preview__list');
           const verse = activeCard.querySelector('.mvv-preview__verse');
           if (title) title.style.opacity = '1';
           if (text) text.style.opacity = '1';
+          if (list) list.style.opacity = '1';
           if (verse) verse.style.opacity = '1';
         }
       }
@@ -418,9 +424,11 @@ function initMVVScrollAnimation() {
       cardsArray.forEach(card => {
         const title = card.querySelector('.mvv-preview__title');
         const text = card.querySelector('.mvv-preview__text');
+        const list = card.querySelector('.mvv-preview__list');
         const verse = card.querySelector('.mvv-preview__verse');
         if (title) title.style.opacity = '0';
         if (text) text.style.opacity = '0';
+        if (list) list.style.opacity = '0';
         if (verse) verse.style.opacity = '0';
       });
     }
@@ -442,6 +450,52 @@ function initMVVScrollAnimation() {
   
   // Verificar inicialmente
   checkSectionAtTop();
+  
+  // ===== APROXIMAÇÃO DO CARD AO TÍTULO DURANTE O SCROLL =====
+  
+  const mvvPreview = document.querySelector('.mvv-preview');
+  const mvvHeader = document.querySelector('.mvv-header');
+  
+  if (mvvSection && mvvPreview && mvvHeader) {
+    function updateCardPosition() {
+      const sectionRect = mvvSection.getBoundingClientRect();
+      const headerRect = mvvHeader.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Quando a seção entra na viewport
+      if (sectionRect.top < viewportHeight && sectionRect.bottom > 0) {
+        // Calcular progresso baseado na posição do header
+        const headerTop = headerRect.top;
+        const stickyTop = 80; // Posição sticky do header
+        
+        // Progresso: 0 quando header está longe, 1 quando está no sticky
+        const distanceToSticky = headerTop - stickyTop;
+        const maxDistance = 300; // Distância máxima para começar aproximação
+        const progress = Math.max(0, Math.min(1, 1 - (distanceToSticky / maxDistance)));
+        
+        // Aplicar transformação: move o card para cima conforme o progresso
+        // Máximo de 150px de movimento para cima
+        const translateY = -150 * progress;
+        mvvPreview.style.transform = `translateY(${translateY}px)`;
+        mvvPreview.style.transition = 'transform 0.1s ease-out';
+      }
+    }
+    
+    // Atualizar posição no scroll
+    let positionTicking = false;
+    function handlePositionScroll() {
+      if (!positionTicking) {
+        window.requestAnimationFrame(() => {
+          updateCardPosition();
+          positionTicking = false;
+        });
+        positionTicking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', handlePositionScroll, { passive: true });
+    updateCardPosition(); // Inicial
+  }
 }
 
 // Inicializar quando DOM estiver pronto
