@@ -412,7 +412,7 @@
 
 /* Baixar o título e parágrafos na seção "Por que servimos?" */
 .features .section__title {
-  margin-top: 4rem; /* Baixar mais o título */
+  margin-top: 8rem; /* Baixar mais o título e todo o conteúdo */
   margin-bottom: 0;
 }
 
@@ -1133,6 +1133,8 @@
 /* Seção normal */
 .section--dark:has(.mvv-preview) {
   position: relative;
+  padding-top: var(--spacing-xl); /* Espaçamento para começar no final da seção anterior */
+  margin-top: 0; /* Garantir que não há sobreposição */
 }
 
 /* Overlay de iluminação azul para a seção MVV - mantém efeito de luz */
@@ -1786,8 +1788,8 @@
 /* Seção da galeria na home - sem azul */
 .section--dark:has(.gallery-container) {
   background: radial-gradient(ellipse at center, #050608 0%, #030405 50%, #000000 100%);
-  padding: 0;
-  padding-bottom: var(--spacing-xxl);
+  padding-top: calc(var(--spacing-xxl) + var(--spacing-lg)); /* Espaçamento maior para cima - evitar sobreposição com a seção "Seja bem-vindo" */
+  padding-bottom: calc(var(--spacing-sm) / 2); /* Espaço ainda mais reduzido para baixo */
   margin-top: 0;
   position: relative;
 }
@@ -1815,7 +1817,7 @@
 .gallery-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg) var(--spacing-md); /* Mais espaçamento no topo */
   position: relative;
   z-index: 0;
 }
