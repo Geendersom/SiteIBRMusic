@@ -1817,7 +1817,7 @@
 .gallery-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg) var(--spacing-md); /* Mais espaçamento no topo */
+  padding: var(--spacing-xxl) var(--spacing-md) calc(var(--spacing-lg) / 2) var(--spacing-md); /* Mais espaçamento no topo, padding-bottom reduzido pela metade */
   position: relative;
   z-index: 0;
 }
