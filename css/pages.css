@@ -1638,33 +1638,57 @@
 
 /* ===== INSCRIÇÕES PAGE ===== */
 .inscriptions-hero {
-  padding: calc(80px + var(--spacing-xl)) 0 calc(var(--spacing-xl) + var(--spacing-xxl));
+  padding: calc(80px + var(--spacing-xl)) 0 calc(var(--spacing-xl) + var(--spacing-lg));
   text-align: center;
   background: linear-gradient(135deg, #0a0a0a 0%, #001122 100%);
   color: white;
   position: relative;
   overflow: hidden;
-  min-height: 70vh; /* Altura mínima aumentada para mais espaço */
+  min-height: 100vh; /* Altura mínima para preencher toda a tela */
 }
 
-/* Frase de fundo "FAÇA PARTE" */
+/* Frase de fundo "FAÇA PARTE" - Comentado para uso futuro */
+/* "FAÇA" no canto superior esquerdo */
+/*
 .inscriptions-hero::before {
-  content: 'FAÇA\A PARTE';
-  white-space: pre;
+  content: 'FAÇA';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(8rem, 20vw, 15rem);
+  top: 40px;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  font-size: clamp(6rem, 15vw, 12rem);
   font-weight: 700;
-  color: rgba(26, 95, 179, 0.15); /* Azul mais claro que o fundo para destaque */
-  line-height: 0.85;
+  color: rgba(26, 95, 179, 0.010);
   letter-spacing: -0.02em;
   z-index: 0;
   pointer-events: none;
   font-family: var(--font-display);
-  text-align: center;
+  line-height: 1;
+  transform: translate(0, 0);
 }
+*/
+
+/* "PARTE" no canto inferior direito */
+/*
+.inscriptions-hero::after {
+  content: 'PARTE';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  font-size: clamp(6rem, 15vw, 12rem);
+  font-weight: 700;
+  color: rgba(26, 95, 179, 0.025);
+  letter-spacing: -0.02em;
+  z-index: 0;
+  pointer-events: none;
+  font-family: var(--font-display);
+  line-height: 1;
+  transform: translate(0, 0);
+}
+*/
 
 .inscriptions-hero .section__title {
   color: white;
