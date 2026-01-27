@@ -334,20 +334,22 @@ function initMVVScrollAnimation() {
   }
   
   /**
-   * Próximo card
+   * Próximo card - navegação circular
    */
   function nextCard() {
-    if (currentIndex < cardsArray.length - 1 && !isTransitioning) {
-      showCard(currentIndex + 1);
+    if (!isTransitioning) {
+      const nextIndex = (currentIndex + 1) % cardsArray.length;
+      showCard(nextIndex);
     }
   }
   
   /**
-   * Card anterior
+   * Card anterior - navegação circular
    */
   function prevCard() {
-    if (currentIndex > 0 && !isTransitioning) {
-      showCard(currentIndex - 1);
+    if (!isTransitioning) {
+      const prevIndex = (currentIndex - 1 + cardsArray.length) % cardsArray.length;
+      showCard(prevIndex);
     }
   }
   
