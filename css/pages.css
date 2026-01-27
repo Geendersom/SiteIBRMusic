@@ -412,18 +412,18 @@
 
 /* Baixar o título e parágrafos na seção "Por que servimos?" */
 .features .section__title {
-  margin-top: 8rem; /* Baixar mais o título e todo o conteúdo */
+  margin-top: 12rem; /* Baixar ainda mais o título e todo o conteúdo */
   margin-bottom: 0;
 }
 
 /* Ajuste de espaçamento dos parágrafos na seção "Por que servimos?" */
 .features .text-justify:first-of-type {
   margin-top: 8rem; /* Baixar mais o primeiro parágrafo */
-  margin-bottom: 4rem; /* Separar mais o parágrafo 1 do 2 */
+  margin-bottom: 5rem; /* Separar mais o parágrafo 1 do 2 */
 }
 
 .features .text-justify:last-of-type {
-  margin-top: 2.5rem; /* Separar mais o parágrafo 1 do 2 */
+  margin-top: 5rem; /* Separar mais o parágrafo 1 do 2 */
   margin-bottom: var(--spacing-xl); /* Manter espaçamento inferior padrão */
 }
 
