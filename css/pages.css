@@ -410,6 +410,23 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Baixar o título e parágrafos na seção "Por que servimos?" */
+.features .section__title {
+  margin-top: 4rem; /* Baixar mais o título */
+  margin-bottom: 0;
+}
+
+/* Ajuste de espaçamento dos parágrafos na seção "Por que servimos?" */
+.features .text-justify:first-of-type {
+  margin-top: 8rem; /* Baixar mais o primeiro parágrafo */
+  margin-bottom: 4rem; /* Separar mais o parágrafo 1 do 2 */
+}
+
+.features .text-justify:last-of-type {
+  margin-top: 2.5rem; /* Separar mais o parágrafo 1 do 2 */
+  margin-bottom: var(--spacing-xl); /* Manter espaçamento inferior padrão */
+}
+
 .features__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

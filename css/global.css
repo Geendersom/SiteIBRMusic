@@ -509,6 +509,10 @@
   text-align: center;
 }
 
+.text-justify {
+  text-align: justify !important;
+}
+
 .mt-sm { margin-top: var(--spacing-sm); }
 .mt-md { margin-top: var(--spacing-md); }
 .mt-lg { margin-top: var(--spacing-lg); }
