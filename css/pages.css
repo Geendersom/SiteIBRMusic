@@ -1721,11 +1721,17 @@
   font-family: inherit;
 }
 
-/* Campo de instrumento com fundo branco como os outros campos */
+/* Campo de instrumento com fundo branco como os outros campos - mesma altura e animação */
 #instrumento.form-textarea {
   background: rgba(255, 255, 255, 0.95);
   color: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.15);
+  min-height: 0; /* Remove altura mínima */
+  height: calc(0.875rem * 2 + 1em * 1.6); /* Altura igual aos inputs: padding-top + padding-bottom + line-height */
+  resize: none; /* Remove resize para manter altura fixa como inputs */
+  overflow: hidden; /* Esconde overflow para manter altura consistente */
+  line-height: 1.6; /* Mesmo line-height dos inputs */
+  transition: all var(--transition-base); /* Mesma animação dos inputs */
 }
 
 #instrumento.form-textarea:focus {
@@ -1735,8 +1741,8 @@
   color: rgba(0, 0, 0, 1);
 }
 
-#instrumento.form-textarea:hover {
-  background: rgba(255, 255, 255, 1);
+.form-group #instrumento.form-textarea:hover {
+  background: rgba(240, 240, 240, 0.95); /* Escurece um pouco no hover como os outros campos */
   border-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -2282,6 +2288,12 @@
 
 .form-group input::placeholder {
   color: rgba(0, 0, 0, 0.5);
+}
+
+.form-group input:hover,
+.form-group select:hover {
+  background: rgba(240, 240, 240, 0.95);
+  border-color: rgba(0, 0, 0, 0.2);
 }
 
 .form-group input:focus,
