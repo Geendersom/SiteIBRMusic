@@ -1721,6 +1721,29 @@
   font-family: inherit;
 }
 
+/* Campo de instrumento com fundo branco como os outros campos */
+#instrumento.form-textarea {
+  background: rgba(255, 255, 255, 0.95);
+  color: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+#instrumento.form-textarea:focus {
+  background: rgba(255, 255, 255, 1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 95, 179, 0.1);
+  color: rgba(0, 0, 0, 1);
+}
+
+#instrumento.form-textarea:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+#instrumento.form-textarea::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .form-submit {
   width: 100%;
   padding: 0.9375rem 1.5rem;
