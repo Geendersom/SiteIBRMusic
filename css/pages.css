@@ -1696,6 +1696,45 @@
   z-index: 1;
 }
 
+/* Remover fundo azul da seção "Processo de Inscrição" na página de inscrições */
+.about-content.process-section {
+  background: transparent !important;
+}
+
+.about-content.process-section::before,
+.about-content.process-section::after {
+  display: none !important;
+}
+
+/* Alinhar textos das opções à esquerda */
+.about-content__text ul {
+  text-align: left !important;
+}
+
+.about-content__text li {
+  text-align: left !important;
+}
+
+/* Seção Dúvidas - sem fundo azul e sem escurecimento */
+.duvidas-section {
+  background: transparent !important;
+  position: relative;
+}
+
+/* Remover overlays da classe section--dark */
+.duvidas-section::before {
+  display: none !important;
+}
+
+.duvidas-section::after {
+  display: none !important;
+}
+
+.duvidas-section .container {
+  position: relative;
+  z-index: 1;
+}
+
 .inscriptions-hero .section__subtitle {
   color: rgba(255, 255, 255, 0.8);
   font-size: clamp(0.875rem, 1.5vw, 1rem); /* Fonte reduzida para evitar quebras */
