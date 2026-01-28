@@ -2510,3 +2510,64 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Seção Nossa Trajetória */
+.trajetoria-section {
+  padding: var(--spacing-xxl) 0;
+}
+
+.trajetoria-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: var(--spacing-lg);
+}
+
+.trajetoria-content p {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: var(--spacing-lg);
+  text-align: justify;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+}
+
+.trajetoria-content p.trajetoria-quote {
+  text-align: center;
+}
+
+.trajetoria-content p cite {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-size: clamp(0.875rem, 1.3vw, 1rem);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+.trajetoria-verse {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-md);
+  font-style: italic;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.125rem, 1.8vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.trajetoria-verse cite {
+  display: block;
+  margin-top: var(--spacing-md);
+  font-style: normal;
+  font-size: clamp(0.875rem, 1.3vw, 1rem);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+.trajetoria-verse cite::before {
+  content: "— ";
+}
