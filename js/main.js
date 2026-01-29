@@ -532,7 +532,7 @@ function initAboutHeroReveal() {
     // Pequeno delay para suavizar a entrada
     setTimeout(() => {
       aboutHeroContent.classList.add('visible');
-    }, 300);
+    }, 150);
   }
 }
 

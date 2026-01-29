@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (heroContent) {
     setTimeout(() => {
       heroContent.classList.add('loaded');
-    }, 200);
+    }, 100);
   }
   
   // Animação de texto reveal
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
           span.style.opacity = '1';
           span.style.transform = 'translateY(0)';
-        }, index * 50);
+        }, index * 25);
       });
     });
   });

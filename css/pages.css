@@ -1282,13 +1282,13 @@
 .mvv-section--at-top .mvv-preview__card.active .mvv-preview__list {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.2s;
+  transition-delay: 0.1s;
 }
 
 .mvv-section--at-top .mvv-preview__card.active .mvv-preview__verse {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.4s;
+  transition-delay: 0.2s;
 }
 
 /* Card saindo */
