@@ -7,7 +7,7 @@
 .reveal {
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 2s cubic-bezier(0.2, 0, 0.2, 1), transform 2s cubic-bezier(0.2, 0, 0.2, 1);
+  transition: opacity 1s cubic-bezier(0.2, 0, 0.2, 1), transform 1s cubic-bezier(0.2, 0, 0.2, 1);
   will-change: opacity, transform;
 }
 
@@ -36,7 +36,7 @@
 .fade-in-up {
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: opacity, transform;
 }
 
@@ -47,7 +47,7 @@
 
 .fade-in {
   opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: opacity;
 }
 
@@ -59,7 +59,7 @@
 .slide-in-left {
   opacity: 0;
   transform: translateX(-20px);
-  transition: all 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slide-in-left.visible {
@@ -70,7 +70,7 @@
 .slide-in-right {
   opacity: 0;
   transform: translateX(20px);
-  transition: all 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slide-in-right.visible {
@@ -173,7 +173,7 @@
 .stagger-item {
   opacity: 0;
   transform: translateY(16px);
-  transition: all 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .stagger-item.visible {
@@ -201,7 +201,7 @@
 }
 
 .smooth-appear {
-  animation: smoothAppear 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: smoothAppear 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Loading Spinner */
@@ -284,7 +284,7 @@
 .fade-stagger {
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .fade-stagger.visible {

@@ -17,7 +17,7 @@
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
   /* Transição suave ao sair da viewport */
-  transition: opacity 2s cubic-bezier(0.2, 0, 0.2, 1);
+  transition: opacity 1s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
 .hero--dark::before {
@@ -31,7 +31,7 @@
     linear-gradient(to bottom, rgba(5, 6, 8, 1) 0%, rgba(5, 6, 8, 0.95) 7.5%, rgba(5, 6, 8, 0.7) 20%, rgba(5, 6, 8, 0.3) 35%, transparent 50%),
     radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
   z-index: 1;
-  transition: opacity 2.5s cubic-bezier(0.2, 0, 0.2, 1);
+  transition: opacity 1.25s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
 .hero__background {
@@ -44,7 +44,7 @@
   opacity: 0.85;
   z-index: 0;
   filter: brightness(0.7) contrast(1.1);
-  transition: opacity 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, opacity;
 }
 
@@ -61,7 +61,7 @@
   justify-content: center;
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hero__content.loaded {
@@ -71,7 +71,7 @@
 
 .hero__logo {
   margin-bottom: 0;
-  animation: smoothAppear 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: smoothAppear 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,7 +95,7 @@
   letter-spacing: -0.045em;
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s, transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s;
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.06s, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.06s;
   font-feature-settings: "kern" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -111,7 +111,7 @@
   line-height: 1.55;
   letter-spacing: -0.01em;
   transform: translateY(6px);
-  transition: opacity 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.24s, transform 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.24s;
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s;
   font-feature-settings: "kern" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -129,7 +129,7 @@
   flex-wrap: wrap;
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.36s, transform 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.36s;
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.18s, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.18s;
 }
 
 .hero__content.loaded .hero__title,
@@ -2181,7 +2181,7 @@
   display: block;
   /* Filtro preto e branco - brightness aumentado para diminuir sombra */
   filter: grayscale(100%) brightness(0.85) contrast(1.1);
-  transition: filter 2s cubic-bezier(0.2, 0, 0.2, 1);
+  transition: filter 1s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
 /* Overlay escuro suave - gradiente mais pronunciado para efeito de revelação */
@@ -2241,7 +2241,7 @@
   text-rendering: optimizeLegibility;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 2s cubic-bezier(0.2, 0, 0.2, 1), transform 2s cubic-bezier(0.2, 0, 0.2, 1);
+  transition: opacity 1s cubic-bezier(0.2, 0, 0.2, 1), transform 1s cubic-bezier(0.2, 0, 0.2, 1);
   overflow: visible;
   will-change: transform, opacity;
   position: relative;
@@ -2269,7 +2269,7 @@
   -moz-osx-font-smoothing: grayscale;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 2.2s cubic-bezier(0.2, 0, 0.2, 1) 0.3s, transform 2.2s cubic-bezier(0.2, 0, 0.2, 1) 0.3s;
+  transition: opacity 1.1s cubic-bezier(0.2, 0, 0.2, 1) 0.15s, transform 1.1s cubic-bezier(0.2, 0, 0.2, 1) 0.15s;
   white-space: normal;
   word-wrap: break-word;
   overflow: visible;
