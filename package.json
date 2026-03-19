@@ -1,0 +1,11 @@
+{
+  "name": "ibrmusic-site",
+  "version": "1.0.0",
+  "description": "Site oficial do IBR Music",
+  "scripts": {
+    "start": "npx serve . -l ${PORT:-3000} --single"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
