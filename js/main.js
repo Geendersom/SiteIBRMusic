@@ -210,16 +210,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Form submitted:', data);
       });
     }
-    
-    // Parallax effect for hero images
-    const heroBackground = document.querySelector('.hero__background');
-    if (heroBackground) {
-      window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * 0.5;
-        heroBackground.style.transform = `translateY(${rate}px)`;
-      });
-    }
   }
 });
 

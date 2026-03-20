@@ -1,0 +1,304 @@
+{
+  "generatedAt": "2026-03-20T11:14:57.567Z",
+  "sourceBytes": 277413296,
+  "generatedBytes": 10442181,
+  "sourceAssets": [
+    {
+      "type": "photo",
+      "fileName": "DSC00772-Enhanced-NR.jpg",
+      "size": 17249250
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC00792-Enhanced-NR.jpg",
+      "size": 22169987
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC00801-Enhanced-NR.jpg",
+      "size": 12805385
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC00858-Enhanced-NR.jpg",
+      "size": 20066398
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC00903-Enhanced-NR.jpg",
+      "size": 17725817
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC05476-Enhanced-NR.jpg",
+      "size": 14876357
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC05514-Enhanced-NR.jpg",
+      "size": 16367518
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC05544-Enhanced-NR.jpg",
+      "size": 8044184
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC05553-Enhanced-NR.jpg",
+      "size": 11718355
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC07901-Enhanced-NR.jpg",
+      "size": 22643356
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC08595.jpg",
+      "size": 17301305
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC08605.jpg",
+      "size": 14931843
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC09849.jpg",
+      "size": 23327243
+    },
+    {
+      "type": "photo",
+      "fileName": "DSC09875.jpg",
+      "size": 20212132
+    },
+    {
+      "type": "photo",
+      "fileName": "SFP03553.jpg",
+      "size": 20015756
+    },
+    {
+      "type": "photo",
+      "fileName": "SFP03571.jpg",
+      "size": 17644466
+    },
+    {
+      "type": "logo",
+      "fileName": "IBR MUSIC - TOPO.png",
+      "size": 26047
+    },
+    {
+      "type": "logo",
+      "fileName": "IBR MUSIC - OP 3.png",
+      "size": 49806
+    },
+    {
+      "type": "logo",
+      "fileName": "LOGO-IBR (branca).png",
+      "size": 167340
+    },
+    {
+      "type": "icon",
+      "fileName": "SÍMBOLO.png",
+      "size": 70751
+    }
+  ],
+  "generatedAssets": [
+    {
+      "type": "photo",
+      "fileName": "images/dsc00772-enhanced-nr-sm.jpg",
+      "size": 95772
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00772-enhanced-nr-lg.jpg",
+      "size": 453184
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00792-enhanced-nr-sm.jpg",
+      "size": 73846
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00792-enhanced-nr-lg.jpg",
+      "size": 308669
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00801-enhanced-nr-sm.jpg",
+      "size": 97970
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00801-enhanced-nr-lg.jpg",
+      "size": 520829
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00858-enhanced-nr-sm.jpg",
+      "size": 101678
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00858-enhanced-nr-lg.jpg",
+      "size": 579239
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00903-enhanced-nr-sm.jpg",
+      "size": 102107
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00903-enhanced-nr-lg.jpg",
+      "size": 523859
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05476-enhanced-nr-sm.jpg",
+      "size": 103456
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05476-enhanced-nr-lg.jpg",
+      "size": 470541
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05514-enhanced-nr-sm.jpg",
+      "size": 117689
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05514-enhanced-nr-lg.jpg",
+      "size": 558856
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05544-enhanced-nr-sm.jpg",
+      "size": 118047
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05544-enhanced-nr-lg.jpg",
+      "size": 574428
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05553-enhanced-nr-sm.jpg",
+      "size": 115294
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05553-enhanced-nr-lg.jpg",
+      "size": 572814
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-sm.jpg",
+      "size": 140871
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-lg.jpg",
+      "size": 676535
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08595-sm.jpg",
+      "size": 99160
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08595-lg.jpg",
+      "size": 544288
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08605-sm.jpg",
+      "size": 105902
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08605-lg.jpg",
+      "size": 595976
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09849-sm.jpg",
+      "size": 106662
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09849-lg.jpg",
+      "size": 578550
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09875-sm.jpg",
+      "size": 108841
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09875-lg.jpg",
+      "size": 510384
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03553-sm.jpg",
+      "size": 118916
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03553-lg.jpg",
+      "size": 592315
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03571-sm.jpg",
+      "size": 107374
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03571-lg.jpg",
+      "size": 559709
+    },
+    {
+      "type": "logo",
+      "fileName": "logos/logo-top.png",
+      "size": 8490
+    },
+    {
+      "type": "logo",
+      "fileName": "logos/logo-hero.png",
+      "size": 49803
+    },
+    {
+      "type": "logo",
+      "fileName": "logos/logo-footer.png",
+      "size": 20485
+    },
+    {
+      "type": "icon",
+      "fileName": "icons/favicon-32.png",
+      "size": 1101
+    },
+    {
+      "type": "icon",
+      "fileName": "icons/apple-touch-icon.png",
+      "size": 4279
+    },
+    {
+      "type": "icon",
+      "fileName": "icons/favicon-192.png",
+      "size": 5692
+    },
+    {
+      "type": "icon",
+      "fileName": "icons/favicon-512.png",
+      "size": 18570
+    }
+  ]
+}

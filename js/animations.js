@@ -22,6 +22,7 @@ const observer = new IntersectionObserver(function(entries) {
 
 // Inicializar animações quando DOM estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Selecionar todos os elementos com classes de animação
   const animatedElements = document.querySelectorAll(
     '.reveal, .fade-in, .fade-in-up, .slide-in-left, .slide-in-right, .scale-in, .stagger-item, .fade-stagger'
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Parallax sutil e imperceptível para elementos com classe parallax
   const parallaxElements = document.querySelectorAll('.parallax');
   
-  if (parallaxElements.length > 0) {
+  if (parallaxElements.length > 0 && !prefersReducedMotion) {
     let ticking = false;
     
     window.addEventListener('scroll', function() {
@@ -98,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         ticking = true;
       }
-    });
+    }, { passive: true });
   }
   
   // Animação de contador (se houver)
