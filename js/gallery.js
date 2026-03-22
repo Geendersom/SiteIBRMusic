@@ -16,6 +16,7 @@ function shuffleArray(array) {
 document.addEventListener('DOMContentLoaded', function() {
   const gallery = document.querySelector('.gallery-slider');
   if (!gallery) return;
+  const assetLoader = window.IBRSiteAssets;
   
   // Embaralhar slides aleatoriamente
   const slidesContainer = gallery;
@@ -57,7 +58,36 @@ document.addEventListener('DOMContentLoaded', function() {
   
   let currentSlide = 0;
   let autoplayInterval;
+  let galleryPrimed = false;
   const autoplayDelay = 5000; // 5 segundos
+
+  function preloadSlide(index) {
+    if (!finalSlides.length || !assetLoader || typeof assetLoader.loadImage !== 'function') {
+      return;
+    }
+
+    const normalizedIndex = (index + finalSlides.length) % finalSlides.length;
+    const slideImage = finalSlides[normalizedIndex]?.querySelector('img[data-asset-photo]');
+    if (slideImage) {
+      assetLoader.loadImage(slideImage);
+    }
+  }
+
+  function preloadVisibleSlides(index) {
+    preloadSlide(index);
+    preloadSlide(index + 1);
+    preloadSlide(index - 1);
+  }
+
+  function primeGallery(index = currentSlide) {
+    if (galleryPrimed) {
+      return;
+    }
+
+    galleryPrimed = true;
+    preloadVisibleSlides(index);
+    startAutoplay();
+  }
   
   // Função para mostrar slide
   function showSlide(index) {
@@ -78,6 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
       counter.textContent = `${index + 1} / ${finalSlides.length}`;
     }
     
+    if (galleryPrimed) {
+      preloadVisibleSlides(index);
+    }
     currentSlide = index;
   }
   
@@ -149,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Autoplay
   function startAutoplay() {
+    stopAutoplay();
     autoplayInterval = setInterval(nextSlide, autoplayDelay);
   }
   
@@ -160,14 +194,35 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Pausar autoplay ao interagir
   gallery.addEventListener('mouseenter', stopAutoplay);
-  gallery.addEventListener('mouseleave', startAutoplay);
-  
-  // Iniciar autoplay
-  startAutoplay();
+  gallery.addEventListener('mouseleave', function() {
+    if (galleryPrimed) {
+      startAutoplay();
+    }
+  });
   
   // Mostrar primeiro slide
   if (finalSlides.length > 0) {
     showSlide(0);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const galleryObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        primeGallery(currentSlide);
+        galleryObserver.disconnect();
+      });
+    }, {
+      rootMargin: '200px 0px',
+      threshold: 0.05
+    });
+
+    galleryObserver.observe(gallery);
+  } else {
+    primeGallery(currentSlide);
   }
   
   // Pausar autoplay quando a página não está visível

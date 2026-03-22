@@ -1,0 +1,10 @@
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["npm install"]
+
+# Sem fase de build — site estático puro
+
+[start]
+cmd = "npx serve . -l ${PORT:-80}"
