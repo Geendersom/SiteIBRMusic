@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Site oficial do IBR Music",
   "scripts": {
+    "test": "node scripts/performance-check.mjs",
     "start": "npx serve . -l ${PORT:-80}"
   },
   "dependencies": {

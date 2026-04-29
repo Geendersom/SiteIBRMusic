@@ -14,8 +14,10 @@
   <link
     rel="preload"
     as="image"
-    href="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-lg.jpg"
-    imagesrcset="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-sm.jpg 1x, https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-lg.jpg 2x"
+    href="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-lg.webp"
+    imagesrcset="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-sm.webp 640w, https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-md.webp 1280w, https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-lg.webp 1920w"
+    imagesizes="100vw"
+    type="image/webp"
     fetchpriority="high"
   >
   <link rel="icon" type="image/png" sizes="32x32" href="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/icons/favicon-32.png">
@@ -58,15 +60,23 @@
 
   <!-- Hero Section -->
   <section class="hero hero--dark">
-    <img
-      src="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-lg.jpg"
-      srcset="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-sm.jpg 1x, https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-lg.jpg 2x"
-      alt="IBRMusic"
-      class="hero__background parallax"
-      loading="eager"
-      decoding="async"
-      fetchpriority="high"
-    >
+    <picture class="hero__picture">
+      <source
+        type="image/webp"
+        srcset="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-sm.webp 640w, https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-md.webp 1280w, https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-lg.webp 1920w"
+        sizes="100vw"
+      >
+      <img
+        src="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-md.jpg"
+        srcset="https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-sm.jpg 640w, https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-md.jpg 1280w, https://huxrqluykzicckxjgchf.supabase.co/storage/v1/object/public/site-assets/site/v1/images/dsc07901-enhanced-nr-hero-lg.jpg 1920w"
+        sizes="100vw"
+        alt="IBRMusic"
+        class="hero__background parallax"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      >
+    </picture>
     
     <div class="hero__content fade-in">
       <div class="hero__logo">
@@ -375,9 +385,9 @@
   </footer>
 
   <!-- JavaScript -->
-  <script src="js/site-assets.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/gallery.js"></script>
+  <script defer src="js/site-assets.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/gallery.js"></script>
 </body>
 </html>

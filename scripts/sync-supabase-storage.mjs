@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 
 const rootDir = process.cwd();
@@ -116,20 +116,42 @@ async function createOrUpdateBucket(serviceRoleKey) {
 }
 
 function uploadAssets() {
-  runSupabase([
-    '--experimental',
-    'storage',
-    'cp',
-    '-r',
-    generatedAssetsDir,
-    `ss:///${bucketId}/${remotePrefix}`,
-    '--cache-control',
-    'public, max-age=31536000, immutable',
-  ]);
+  const assetDirectories = readdirSync(generatedAssetsDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
+
+  for (const directory of assetDirectories) {
+    runSupabase([
+      '--experimental',
+      'storage',
+      'cp',
+      '-r',
+      path.join(generatedAssetsDir, directory),
+      `ss:///${bucketId}/${remotePrefix}`,
+      '--cache-control',
+      'public, max-age=31536000, immutable',
+      '--jobs',
+      '8',
+    ]);
+  }
+}
+
+function removeLegacyNestedUpload() {
+  try {
+    runSupabase([
+      '--experimental',
+      'storage',
+      'rm',
+      '-r',
+      `ss:///${bucketId}/${remotePrefix}/site-assets`,
+    ]);
+  } catch {
+    // The cleanup path only exists when an older recursive upload nested the source directory.
+  }
 }
 
 async function verifyUpload() {
-  const response = await fetch(`${publicBaseUrl}/images/dsc07901-enhanced-nr-lg.jpg`, {
+  const response = await fetch(`${publicBaseUrl}/images/dsc07901-enhanced-nr-hero-lg.webp`, {
     method: 'HEAD',
   });
 
@@ -151,6 +173,7 @@ async function main() {
   const serviceRoleKey = getLegacyServiceRoleKey();
   const bucketResult = await createOrUpdateBucket(serviceRoleKey);
   uploadAssets();
+  removeLegacyNestedUpload();
   const verification = await verifyUpload();
 
   process.stdout.write(

@@ -5,12 +5,16 @@
   const IMAGE_PLACEHOLDER =
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3C/svg%3E";
 
-  function buildPhotoUrl(slug, variant) {
-    return `${STORAGE_BASE_URL}/images/${slug}-${variant}.jpg`;
+  function buildPhotoUrl(slug, variant, format = 'jpg') {
+    return `${STORAGE_BASE_URL}/images/${slug}-${variant}.${format}`;
   }
 
-  function buildPhotoSrcSet(slug) {
-    return `${buildPhotoUrl(slug, 'sm')} 1x, ${buildPhotoUrl(slug, 'lg')} 2x`;
+  function buildPhotoSrcSet(slug, format = 'jpg') {
+    return [
+      `${buildPhotoUrl(slug, 'sm', format)} 640w`,
+      `${buildPhotoUrl(slug, 'md', format)} 1280w`,
+      `${buildPhotoUrl(slug, 'lg', format)} 1920w`,
+    ].join(', ');
   }
 
   function loadImage(imageElement) {
@@ -23,9 +27,13 @@
       return;
     }
 
+    const format = imageElement.dataset.assetFormat || 'webp';
+    const fallback = imageElement.dataset.assetFallback || 'sm';
+
     imageElement.decoding = imageElement.decoding || 'async';
-    imageElement.src = buildPhotoUrl(assetPhoto, imageElement.dataset.assetFallback || 'sm');
-    imageElement.srcset = buildPhotoSrcSet(assetPhoto);
+    imageElement.sizes = imageElement.sizes || imageElement.dataset.assetSizes || '100vw';
+    imageElement.src = buildPhotoUrl(assetPhoto, fallback, format);
+    imageElement.srcset = buildPhotoSrcSet(assetPhoto, format);
     imageElement.dataset.assetLoaded = 'true';
   }
 

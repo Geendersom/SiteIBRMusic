@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-03-20T11:14:57.567Z",
+  "generatedAt": "2026-04-29T14:00:37.369Z",
   "sourceBytes": 277413296,
-  "generatedBytes": 10442181,
+  "generatedBytes": 17618085,
   "sourceAssets": [
     {
       "type": "photo",
@@ -108,162 +108,512 @@
     {
       "type": "photo",
       "fileName": "images/dsc00772-enhanced-nr-sm.jpg",
-      "size": 95772
+      "size": 46333
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00772-enhanced-nr-sm.webp",
+      "size": 16372
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00772-enhanced-nr-md.jpg",
+      "size": 172839
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00772-enhanced-nr-md.webp",
+      "size": 57000
     },
     {
       "type": "photo",
       "fileName": "images/dsc00772-enhanced-nr-lg.jpg",
-      "size": 453184
+      "size": 446716
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00772-enhanced-nr-lg.webp",
+      "size": 139330
     },
     {
       "type": "photo",
       "fileName": "images/dsc00792-enhanced-nr-sm.jpg",
-      "size": 73846
+      "size": 40204
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00792-enhanced-nr-sm.webp",
+      "size": 12216
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00792-enhanced-nr-md.jpg",
+      "size": 129537
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00792-enhanced-nr-md.webp",
+      "size": 35152
     },
     {
       "type": "photo",
       "fileName": "images/dsc00792-enhanced-nr-lg.jpg",
-      "size": 308669
+      "size": 308398
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00792-enhanced-nr-lg.webp",
+      "size": 67426
     },
     {
       "type": "photo",
       "fileName": "images/dsc00801-enhanced-nr-sm.jpg",
-      "size": 97970
+      "size": 49095
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00801-enhanced-nr-sm.webp",
+      "size": 17230
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00801-enhanced-nr-md.jpg",
+      "size": 198525
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00801-enhanced-nr-md.webp",
+      "size": 59766
     },
     {
       "type": "photo",
       "fileName": "images/dsc00801-enhanced-nr-lg.jpg",
-      "size": 520829
+      "size": 508689
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00801-enhanced-nr-lg.webp",
+      "size": 136290
     },
     {
       "type": "photo",
       "fileName": "images/dsc00858-enhanced-nr-sm.jpg",
-      "size": 101678
+      "size": 45534
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00858-enhanced-nr-sm.webp",
+      "size": 14540
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00858-enhanced-nr-md.jpg",
+      "size": 201748
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00858-enhanced-nr-md.webp",
+      "size": 60012
     },
     {
       "type": "photo",
       "fileName": "images/dsc00858-enhanced-nr-lg.jpg",
-      "size": 579239
+      "size": 568398
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00858-enhanced-nr-lg.webp",
+      "size": 180292
     },
     {
       "type": "photo",
       "fileName": "images/dsc00903-enhanced-nr-sm.jpg",
-      "size": 102107
+      "size": 46731
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00903-enhanced-nr-sm.webp",
+      "size": 16442
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00903-enhanced-nr-md.jpg",
+      "size": 193434
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00903-enhanced-nr-md.webp",
+      "size": 70822
     },
     {
       "type": "photo",
       "fileName": "images/dsc00903-enhanced-nr-lg.jpg",
-      "size": 523859
+      "size": 515286
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc00903-enhanced-nr-lg.webp",
+      "size": 183918
     },
     {
       "type": "photo",
       "fileName": "images/dsc05476-enhanced-nr-sm.jpg",
-      "size": 103456
+      "size": 51615
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05476-enhanced-nr-sm.webp",
+      "size": 18014
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05476-enhanced-nr-md.jpg",
+      "size": 187016
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05476-enhanced-nr-md.webp",
+      "size": 54454
     },
     {
       "type": "photo",
       "fileName": "images/dsc05476-enhanced-nr-lg.jpg",
-      "size": 470541
+      "size": 463295
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05476-enhanced-nr-lg.webp",
+      "size": 109280
     },
     {
       "type": "photo",
       "fileName": "images/dsc05514-enhanced-nr-sm.jpg",
-      "size": 117689
+      "size": 54444
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05514-enhanced-nr-sm.webp",
+      "size": 20028
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05514-enhanced-nr-md.jpg",
+      "size": 216131
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05514-enhanced-nr-md.webp",
+      "size": 69614
     },
     {
       "type": "photo",
       "fileName": "images/dsc05514-enhanced-nr-lg.jpg",
-      "size": 558856
+      "size": 550595
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05514-enhanced-nr-lg.webp",
+      "size": 156700
     },
     {
       "type": "photo",
       "fileName": "images/dsc05544-enhanced-nr-sm.jpg",
-      "size": 118047
+      "size": 56389
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05544-enhanced-nr-sm.webp",
+      "size": 20426
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05544-enhanced-nr-md.jpg",
+      "size": 223051
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05544-enhanced-nr-md.webp",
+      "size": 70894
     },
     {
       "type": "photo",
       "fileName": "images/dsc05544-enhanced-nr-lg.jpg",
-      "size": 574428
+      "size": 552981
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05544-enhanced-nr-lg.webp",
+      "size": 173156
     },
     {
       "type": "photo",
       "fileName": "images/dsc05553-enhanced-nr-sm.jpg",
-      "size": 115294
+      "size": 55094
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05553-enhanced-nr-sm.webp",
+      "size": 19666
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05553-enhanced-nr-md.jpg",
+      "size": 217158
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05553-enhanced-nr-md.webp",
+      "size": 66160
     },
     {
       "type": "photo",
       "fileName": "images/dsc05553-enhanced-nr-lg.jpg",
-      "size": 572814
+      "size": 558202
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc05553-enhanced-nr-lg.webp",
+      "size": 171550
     },
     {
       "type": "photo",
       "fileName": "images/dsc07901-enhanced-nr-sm.jpg",
-      "size": 140871
+      "size": 63665
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-sm.webp",
+      "size": 24682
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-md.jpg",
+      "size": 262248
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-md.webp",
+      "size": 92022
     },
     {
       "type": "photo",
       "fileName": "images/dsc07901-enhanced-nr-lg.jpg",
-      "size": 676535
+      "size": 664994
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-lg.webp",
+      "size": 219720
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-hero-sm.jpg",
+      "size": 63665
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-hero-sm.webp",
+      "size": 24224
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-hero-md.jpg",
+      "size": 254305
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-hero-md.webp",
+      "size": 88990
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-hero-lg.jpg",
+      "size": 595121
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc07901-enhanced-nr-hero-lg.webp",
+      "size": 209606
     },
     {
       "type": "photo",
       "fileName": "images/dsc08595-sm.jpg",
-      "size": 99160
+      "size": 47721
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08595-sm.webp",
+      "size": 16486
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08595-md.jpg",
+      "size": 187968
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08595-md.webp",
+      "size": 53080
     },
     {
       "type": "photo",
       "fileName": "images/dsc08595-lg.jpg",
-      "size": 544288
+      "size": 520212
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08595-lg.webp",
+      "size": 130916
     },
     {
       "type": "photo",
       "fileName": "images/dsc08605-sm.jpg",
-      "size": 105902
+      "size": 50647
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08605-sm.webp",
+      "size": 17546
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08605-md.jpg",
+      "size": 205997
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08605-md.webp",
+      "size": 59278
     },
     {
       "type": "photo",
       "fileName": "images/dsc08605-lg.jpg",
-      "size": 595976
+      "size": 578420
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc08605-lg.webp",
+      "size": 160608
     },
     {
       "type": "photo",
       "fileName": "images/dsc09849-sm.jpg",
-      "size": 106662
+      "size": 48715
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09849-sm.webp",
+      "size": 14812
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09849-md.jpg",
+      "size": 212824
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09849-md.webp",
+      "size": 65794
     },
     {
       "type": "photo",
       "fileName": "images/dsc09849-lg.jpg",
-      "size": 578550
+      "size": 563658
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09849-lg.webp",
+      "size": 165218
     },
     {
       "type": "photo",
       "fileName": "images/dsc09875-sm.jpg",
-      "size": 108841
+      "size": 52132
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09875-sm.webp",
+      "size": 18806
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09875-md.jpg",
+      "size": 204406
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09875-md.webp",
+      "size": 63030
     },
     {
       "type": "photo",
       "fileName": "images/dsc09875-lg.jpg",
-      "size": 510384
+      "size": 505135
+    },
+    {
+      "type": "photo",
+      "fileName": "images/dsc09875-lg.webp",
+      "size": 140900
     },
     {
       "type": "photo",
       "fileName": "images/sfp03553-sm.jpg",
-      "size": 118916
+      "size": 55106
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03553-sm.webp",
+      "size": 20312
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03553-md.jpg",
+      "size": 222592
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03553-md.webp",
+      "size": 71728
     },
     {
       "type": "photo",
       "fileName": "images/sfp03553-lg.jpg",
-      "size": 592315
+      "size": 581126
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03553-lg.webp",
+      "size": 171262
     },
     {
       "type": "photo",
       "fileName": "images/sfp03571-sm.jpg",
-      "size": 107374
+      "size": 50313
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03571-sm.webp",
+      "size": 17362
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03571-md.jpg",
+      "size": 205016
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03571-md.webp",
+      "size": 66210
     },
     {
       "type": "photo",
       "fileName": "images/sfp03571-lg.jpg",
-      "size": 559709
+      "size": 548079
+    },
+    {
+      "type": "photo",
+      "fileName": "images/sfp03571-lg.webp",
+      "size": 178820
     },
     {
       "type": "logo",

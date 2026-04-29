@@ -8,8 +8,15 @@ const logosDir = path.join(rootDir, 'public', 'logos');
 const outputDir = path.join(rootDir, 'supabase', '.generated', 'site-assets');
 
 const photoVariants = [
-  { suffix: 'sm', maxDimension: 960, formatOptions: '58' },
-  { suffix: 'lg', maxDimension: 1920, formatOptions: '72' },
+  { suffix: 'sm', maxDimension: 640, formatOptions: '58', webpQuality: '56' },
+  { suffix: 'md', maxDimension: 1280, formatOptions: '66', webpQuality: '62' },
+  { suffix: 'lg', maxDimension: 1920, formatOptions: '72', webpQuality: '68' },
+];
+
+const heroPhotoVariants = [
+  { suffix: 'hero-sm', maxDimension: 640, formatOptions: '58', webpQuality: '54' },
+  { suffix: 'hero-md', maxDimension: 1280, formatOptions: '64', webpQuality: '60' },
+  { suffix: 'hero-lg', maxDimension: 1920, formatOptions: '68', webpQuality: '64' },
 ];
 
 const logoVariants = [
@@ -62,6 +69,42 @@ function runSips(args) {
   execFileSync('sips', args, { stdio: 'pipe' });
 }
 
+function runCwebp(args) {
+  execFileSync('cwebp', args, { stdio: 'pipe' });
+}
+
+function writePhotoVariant(inputPath, outputPath, variant) {
+  ensureDir(path.dirname(outputPath));
+  runSips([
+    '--resampleHeightWidthMax',
+    String(variant.maxDimension),
+    '-s',
+    'format',
+    'jpeg',
+    '-s',
+    'formatOptions',
+    variant.formatOptions,
+    inputPath,
+    '--out',
+    outputPath,
+  ]);
+
+  generatedStats.push({
+    type: 'photo',
+    fileName: path.relative(outputDir, outputPath),
+    size: fileSize(outputPath),
+  });
+
+  const webpOutputPath = outputPath.replace(/\.jpg$/i, '.webp');
+  runCwebp(['-q', variant.webpQuality, outputPath, '-o', webpOutputPath]);
+
+  generatedStats.push({
+    type: 'photo',
+    fileName: path.relative(outputDir, webpOutputPath),
+    size: fileSize(webpOutputPath),
+  });
+}
+
 function optimizePhoto(fileName) {
   const inputPath = path.join(photosDir, fileName);
   const slug = slugify(fileName);
@@ -74,26 +117,14 @@ function optimizePhoto(fileName) {
 
   for (const variant of photoVariants) {
     const outputPath = path.join(outputDir, 'images', `${slug}-${variant.suffix}.jpg`);
-    ensureDir(path.dirname(outputPath));
-    runSips([
-      '--resampleHeightWidthMax',
-      String(variant.maxDimension),
-      '-s',
-      'format',
-      'jpeg',
-      '-s',
-      'formatOptions',
-      variant.formatOptions,
-      inputPath,
-      '--out',
-      outputPath,
-    ]);
+    writePhotoVariant(inputPath, outputPath, variant);
+  }
 
-    generatedStats.push({
-      type: 'photo',
-      fileName: path.relative(outputDir, outputPath),
-      size: fileSize(outputPath),
-    });
+  if (slug === 'dsc07901-enhanced-nr') {
+    for (const variant of heroPhotoVariants) {
+      const outputPath = path.join(outputDir, 'images', `${slug}-${variant.suffix}.jpg`);
+      writePhotoVariant(inputPath, outputPath, variant);
+    }
   }
 }
 
